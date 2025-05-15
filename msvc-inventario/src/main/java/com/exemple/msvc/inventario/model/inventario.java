@@ -19,13 +19,13 @@ import lombok.NoArgsConstructor;
 public class inventario {
 
     @Id
-    private int estock;
+    private int stock;
 
-    public int getEstock() {
-        return estock;
+    public int getStock() {
+        return stock;
     }
 
-    public void setEstock(int estock) {
-        this.estock = estock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
