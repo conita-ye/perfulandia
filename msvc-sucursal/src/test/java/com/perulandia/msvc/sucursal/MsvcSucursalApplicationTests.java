@@ -1,4 +1,4 @@
-package com.macaesp.msvc.sucursal;
+package com.perulandia.msvc.sucursal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

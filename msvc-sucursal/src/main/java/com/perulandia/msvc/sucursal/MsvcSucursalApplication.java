@@ -1,4 +1,4 @@
-package com.macaesp.msvc.sucursal;
+package com.perulandia.msvc.sucursal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

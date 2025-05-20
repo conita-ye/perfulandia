@@ -1,4 +1,4 @@
-package com.macaesp.msvc.sucursal.model;
+package com.perulandia.msvc.sucursal.model;
 
 
 import jakarta.persistence.Entity;

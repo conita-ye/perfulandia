@@ -7,7 +7,7 @@
 		<artifactId>perfulandia</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.example.msvc.sucursal</groupId>
+	<groupId>com.perfulandia.msvc.sucursal</groupId>
 	<artifactId>msvc-sucursal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>msvc-sucursal</name>
