@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 
-public class carritoCompra {
+public class CarritoCompra {
     @Id
     private int cantiad;
     private double total;
