@@ -1,4 +1,4 @@
-package com.macaesp.msvc.producto.model;
+package com.perfulandia.msvc.producto.model;
 
 
 import jakarta.persistence.Entity;
