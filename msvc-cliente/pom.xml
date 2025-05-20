@@ -7,7 +7,7 @@
 		<artifactId>perfulandia</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.effimrv.msvc.cliente</groupId>
+	<groupId>com.perfulandia.msvc.cliente</groupId>
 	<artifactId>msvc-cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>msvc-cliente</name>
