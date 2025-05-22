@@ -1,7 +1,6 @@
 package com.exemple.msvc.inventario.Servicio;
 
 
-import com.exemple.msvc.inventario.Servicio.
 import com.exemple.msvc.inventario.Repository.InventarioRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
