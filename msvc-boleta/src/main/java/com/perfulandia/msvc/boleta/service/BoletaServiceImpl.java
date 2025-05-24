@@ -1,4 +1,4 @@
 package com.perfulandia.msvc.boleta.service;
 
-public interface BoletaService {
+public class BoletaServiceImpl {
 }
