@@ -1,65 +1,40 @@
 package com.perfulandia.msvc.boleta.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.Date;
 
 @Entity
-@Table (name = "boleta")
-@Data
+@Table (name = "boletas")
+@Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
+
 public class Boleta {
     @Id
-    private String numeroBoleta;
+    @GeneratedValue (Strategy = GenerationType.IDENTITY)
+    private Long idBoleta;
+
+    @Column (nullable = false)
+    @NotNull (message = "El campo no puede estar vacío")
     private Date fechaEmision;
+
+    @Column (nullable = false)
+    @NotBlank (message = "El campo de nombre no puede estar vacío")
     private String nombreCliente;
+
+    @Column (nullable = false)
+    @NotBlank (message = "El campo de detalle producto no puede estar vacío")
     private String detalleProducto;
+
+    @Column (nullable = false)
+    @NotNull (message = "El campo no puede estar vacío")
     private Integer montotal;
 
-    public String getNumeroBoleta() {
-        return numeroBoleta;
-    }
-
-    public void setNumeroBoleta(String numeroBoleta) {
-        this.numeroBoleta = numeroBoleta;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getDetalleProducto() {
-        return detalleProducto;
-    }
-
-    public void setDetalleProducto(String detalleProducto) {
-        this.detalleProducto = detalleProducto;
-    }
-
-    public Date getFechaEmision() {
-        return fechaEmision;
-    }
-
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
-    }
-
-    public Integer getMontotal() {
-        return montotal;
-    }
-
-    public void setMontotal(Integer montotal) {
-        this.montotal = montotal;
-    }
 }
