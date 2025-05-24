@@ -1,63 +1,38 @@
 package com.perfulandia.msvc.cliente.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
 @Table (name = "cliente")
-@Data
+@Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class Cliente {
     @Id
+    @GeneratedValue(Strategy = GenerationType.IDENTITY)
+    private Long idCliente;
+
+    @Column (nullable = false)
+    @NotBlank(message = "El campo de nombre no puede estar vacío")
     private String nombreCli;
+
+    @Column (nullable = false)
+    @NotBlank (message = "El campo de apellido no puede estar vacío")
     private String apellCli;
+
+    @Column (nullable = false)
+    @NotBlank (message = "El campo direccion no puede estar vacío")
     private String direccion;
+
+    @Column (nullable = false)
+    @NotBlank (message = "El campo correo electrónico no puede estar vacío")
     private String correoElectronico;
+
+    @Column (nullable = false)
+    @NotNull(message = "El campo no puede estar vacío")
     private Integer telefono;
-
-    public String getNombreCli() {
-        return nombreCli;
-    }
-
-    public void setNombreCli(String nombreCli) {
-        this.nombreCli = nombreCli;
-    }
-
-    public String getApellCli() {
-        return apellCli;
-    }
-
-    public void setApellCli(String apellCli) {
-        this.apellCli = apellCli;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    public Integer getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Integer telefono) {
-        this.telefono = telefono;
-    }
 }
