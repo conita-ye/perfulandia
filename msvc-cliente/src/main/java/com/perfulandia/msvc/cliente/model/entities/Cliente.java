@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.cliente.model;
+package com.perfulandia.msvc.cliente.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -6,18 +6,18 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
-@Table (name = "cliente")
+@Table
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class Cliente {
     @Id
-    @GeneratedValue(Strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long idCliente;
 
     @Column (nullable = false)
-    @NotBlank(message = "El campo de nombre no puede estar vacío")
+    @NotBlank (message = "El campo de nombre no puede estar vacío")
     private String nombreCli;
 
     @Column (nullable = false)
@@ -33,6 +33,6 @@ public class Cliente {
     private String correoElectronico;
 
     @Column (nullable = false)
-    @NotNull(message = "El campo no puede estar vacío")
+    @NotNull (message = "El campo no puede estar vacío")
     private Integer telefono;
 }

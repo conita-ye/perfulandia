@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.cliente.service;
 
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 
 import java.util.List;
 
