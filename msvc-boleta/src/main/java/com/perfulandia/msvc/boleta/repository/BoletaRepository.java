@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BoletaRepository extends JpaRepository<Boleta, Long> {
+    Iterable<Long> idBoleta (Long idBoleta);
 }

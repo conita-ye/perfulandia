@@ -1,7 +1,6 @@
 package com.perfulandia.msvc.cliente.service;
 
 import com.perfulandia.msvc.cliente.model.Cliente;
-import feign.Client;
 
 import java.util.List;
 

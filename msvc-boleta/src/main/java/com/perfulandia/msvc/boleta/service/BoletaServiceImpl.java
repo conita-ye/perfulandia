@@ -1,4 +1,8 @@
 package com.perfulandia.msvc.boleta.service;
 
-public class BoletaServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class BoletaServiceImpl implements BoletaService  {
+
 }
