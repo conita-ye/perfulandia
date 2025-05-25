@@ -51,11 +51,11 @@ public class productoController {
             actualizado.setNombreProducto(producto.getNombreProducto());
             actualizado.setFechaElaboracion(producto.getFechaElaboracion());
             actualizado.setFechaVencimiento(producto.getFechaVencimiento());
-            actualizado.setCatergoria(producto.getCategoria());
+            actualizado.setCatergoria(producto.getCatergoria());
             actualizado.setStock(producto.getStock());
             actualizado.setPrecio(producto.getPrecio());
 
-            return ResponseEntity.ok(productoService.guardar(actualizado));
+            return ResponseEntity.ok(productoService.guardarProducto(actualizado));
         } else {
             return ResponseEntity.notFound().build();
         }
