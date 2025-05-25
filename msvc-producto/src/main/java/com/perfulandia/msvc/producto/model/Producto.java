@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "productos")
@@ -74,4 +75,5 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
 }
