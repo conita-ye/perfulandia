@@ -19,7 +19,7 @@
         <module>msvc-inventario</module>
         <module>msvc-cliente</module>
         <module>msvc-boleta</module>
-        <module>msvc-carrito</module>
+        <module>msvc-carritocompras</module>
     </modules>
 
     <properties>
