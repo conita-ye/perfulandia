@@ -1,12 +1,11 @@
 package com.perulandia.msvc.sucursal.model;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
-@Data
+@Table (name = "sucursales")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Sucursal {
@@ -15,18 +14,18 @@ public class Sucursal {
 
     @NotBlank(message = "El campo no puede estar vacio")
     @Column(nullable = false)
-    private Long Id;
+    private Long idSucursal;
 
     @NotBlank (message = "El campo no puede estar vacio")
     @Column (nullable = false)
-    private String Nombre;
+    private String nombre;
 
     @NotBlank (message = "El campo no puede estar vacio")
     @Column (nullable = false)
-    private String Direccion;
+    private String direccion;
 
     @NotBlank (message = "El campo no puede estar vacio")
     @Column (nullable = false)
-    private String Ciudad;
+    private String ciudad;
 
 }

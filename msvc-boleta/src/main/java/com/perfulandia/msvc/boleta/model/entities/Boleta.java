@@ -9,6 +9,7 @@ import lombok.*;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Boleta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
