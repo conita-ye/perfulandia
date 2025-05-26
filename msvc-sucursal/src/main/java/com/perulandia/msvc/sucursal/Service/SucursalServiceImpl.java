@@ -25,7 +25,7 @@ public abstract class SucursalServiceImpl implements SucursalService{
 
     @Override
     public Sucursal guardarSucursal(Sucursal sucursal){
-        return sucursalRepository.save(sucursal);
+        return (Sucursal) sucursalRepository.save(sucursal);
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class SucursalServiceImpl implements SucursalService{
             s.setNombre(sucursal.getNombre());
             s.setDireccion(sucursal.getDireccion());
             s.setCiudad(sucursal.getCiudad());
-            return sucursalRepository.save(s);
+            return (Sucursal) sucursalRepository.save(s);
         }else{
             throw new RuntimeException("La Sucursal buscada por id no se encuentra" + id);
         }
