@@ -1,15 +1,16 @@
-package com.perulandia.msvc.sucursal.Service;
+package com.perulandia.msvc.sucursal.service;
 
 import com.perulandia.msvc.sucursal.model.Sucursal;
 import com.perulandia.msvc.sucursal.Repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.perulandia.msvc.sucursal.Service.SucursalService;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class SucursalServiceImpl implements SucursalService{
+public abstract class SucursalServiceImpl implements SucursalService {
     @Autowired
     private SucursalRepository sucursalRepository;
 
