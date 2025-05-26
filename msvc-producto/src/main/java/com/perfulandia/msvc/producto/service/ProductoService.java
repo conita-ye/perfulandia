@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface ProductoService {
     public List<Producto> listarProducto();
-    public Producto findById(Long id);
+
+    List<Producto> finAll();
+
+    public Producto findById(Long id) throws Throwable;
     public Producto guardarProducto(Producto producto);
     public void eliminarProducto(Long id);
 
+    Producto save(Producto producto);
 }
