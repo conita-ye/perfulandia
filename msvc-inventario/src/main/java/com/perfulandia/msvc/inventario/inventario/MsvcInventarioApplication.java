@@ -1,4 +1,4 @@
-package com.exemple.msvc.inventario.inventario;
+package com.perfulandia.msvc.inventario.inventario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
