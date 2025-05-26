@@ -15,7 +15,7 @@ public class BoletaServiceImpl implements BoletaService  {
     private BoletaRepository boletaRepository;
 
     @Override
-    public List<Boleta> finAll() {
+    public List<Boleta> findAll() {
         return this.boletaRepository.findAll();
     }
 

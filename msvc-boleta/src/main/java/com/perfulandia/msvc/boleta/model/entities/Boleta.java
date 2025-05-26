@@ -9,14 +9,10 @@ import lombok.*;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Boleta {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY )
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long idBoleta;
-
-    @Column (nullable = false, unique = true)
-    private Long numBoleta;
 
     @NotBlank (message = "El campo no puede estar vacio")
     @Column (nullable = false)

@@ -14,14 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/boletas")
 @Validated
-
 public class BoletaController {
     @Autowired
     private BoletaService boletaService;
 
     @GetMapping
     public ResponseEntity<List<Boleta>> findAll () {
-        return ResponseEntity.status(HttpStatus.OK).body(boletaService.finAll());
+        return ResponseEntity.status(HttpStatus.OK).body(boletaService.findAll());
     }
 
     @GetMapping("/{id}")
