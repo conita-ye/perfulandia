@@ -1,4 +1,4 @@
-package com.perulandia.msvc.sucursal.Exception;
+package com.perulandia.msvc.sucursal.exception;
 
 public class SucursalException extends RuntimeException {
     public SucursalException(String message) {

@@ -1,4 +1,4 @@
-package com.perulandia.msvc.sucursal.Controller;
+package com.perulandia.msvc.sucursal.controller;
 
 import com.perulandia.msvc.sucursal.model.Sucursal;
 import com.perulandia.msvc.sucursal.service.SucursalService;

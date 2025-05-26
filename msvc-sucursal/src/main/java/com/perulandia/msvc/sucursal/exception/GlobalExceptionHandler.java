@@ -1,4 +1,4 @@
-package com.perulandia.msvc.sucursal.Exception;
+package com.perulandia.msvc.sucursal.exception;
 
 
 import com.perulandia.msvc.sucursal.dtos.ErrorDTO;
