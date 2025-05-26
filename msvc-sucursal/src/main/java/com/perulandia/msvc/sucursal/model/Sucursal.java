@@ -9,7 +9,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Sucursal {
@@ -20,35 +19,4 @@ public class Sucursal {
     private String Direccion;
     private String Ciudad;
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return Direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
-    }
-
-    public String getCiudad() {
-        return Ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        Ciudad = ciudad;
-    }
 }
