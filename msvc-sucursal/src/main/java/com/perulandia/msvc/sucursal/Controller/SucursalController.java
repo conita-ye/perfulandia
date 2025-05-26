@@ -2,7 +2,8 @@ package com.perulandia.msvc.sucursal.Controller;
 
 import ch.qos.logback.core.model.processor.PhaseIndicator;
 import com.perulandia.msvc.sucursal.model.Sucursal;
-import com.perulandia.msvc.sucursal.Service.SucursalService;
+import com.perulandia.msvc.sucursal.service.SucursalService;
+import org.springframework.stereotype.Service;
 import feign.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,14 +38,6 @@ public class SucursalController {
         return ResponseEntity.ok(sucursalService.guardarSucursal(sucursal));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Sucursal> actualizarSucursal(@PathVariable Long id, @RequestBody Sucursal sucursal){
-        try{
-            return ResponseEntity.ok(sucursalService.actualizarSucursal(id, sucursal));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarSucursal(@PathVariable Long id){
