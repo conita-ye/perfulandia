@@ -33,5 +33,4 @@ public class BoletaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(boletaService.save(boleta));
     }
 
-
 }

@@ -1,42 +1,37 @@
 package com.perulandia.msvc.sucursal.Controller;
 
-import ch.qos.logback.core.model.processor.PhaseIndicator;
 import com.perulandia.msvc.sucursal.model.Sucursal;
 import com.perulandia.msvc.sucursal.service.SucursalService;
-import org.springframework.stereotype.Service;
-import feign.Response;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/sucursales")
+@RequestMapping("/api/v1/sucursales")
+@Validated
 public class SucursalController {
     @Autowired
     private SucursalService sucursalService;
 
     @GetMapping
-    public List<Sucursal> listarSucursal(){
-        return sucursalService.listarSucursal();
+    public ResponseEntity<List<Sucursal>> findAll (){
+        return ResponseEntity.status(HttpStatus.OK).body(sucursalService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Sucursal> obtenerIdSucrusal(@PathVariable Long id){
-        Optional<Sucursal> sucursal = sucursalService.idSucursal(id);
-        return sucursal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping
+    public ResponseEntity<Sucursal> findById (@PathVariable long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(sucursalService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Sucursal> crearSucursal(@RequestBody Sucursal sucursal){
-        return ResponseEntity.ok(sucursalService.guardarSucursal(sucursal));
+    public ResponseEntity<Sucursal> save (@RequestBody @Valid Sucursal sucursal) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.save(sucursal));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarSucursal(@PathVariable Long id){
-        sucursalService.eliminarSucursal(id);
-        return ResponseEntity.noContent().build();
-    }
+
 }
