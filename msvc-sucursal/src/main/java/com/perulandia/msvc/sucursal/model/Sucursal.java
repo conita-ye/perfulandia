@@ -1,22 +1,24 @@
 package com.perulandia.msvc.sucursal.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+@Table (name = "sucursales")
+@Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+
     private String Nombre;
+
     private String Direccion;
+
     private String Ciudad;
 
 }
