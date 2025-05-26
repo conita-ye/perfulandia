@@ -26,18 +26,13 @@ public class SucursalController {
     @GetMapping("/{id}")
     public ResponseEntity<Sucursal> obtenerIdSucrusal(@PathVariable Long id){
         Optional<Sucursal> sucursal = sucursalService.idSucursal(id);
-        if(sucursal.isPresent()){
-            return ResponseEntity.ok(sucursal.get());
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+        return sucursal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Sucursal> crearSucursal(@RequestBody Sucursal sucursal){
         return ResponseEntity.ok(sucursalService.guardarSucursal(sucursal));
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarSucursal(@PathVariable Long id){

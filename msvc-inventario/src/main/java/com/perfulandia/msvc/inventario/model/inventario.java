@@ -1,4 +1,4 @@
-package com.exemple.msvc.inventario.model;
+package com.perfulandia.msvc.inventario.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

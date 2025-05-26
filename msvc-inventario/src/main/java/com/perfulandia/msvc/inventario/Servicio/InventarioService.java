@@ -1,7 +1,7 @@
-package com.exemple.msvc.inventario.Servicio;
+package com.perfulandia.msvc.inventario.Servicio;
 
 
-import com.exemple.msvc.inventario.Repository.InventarioRepository
+import com.perfulandia.msvc.inventario.Repository.InventarioRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
