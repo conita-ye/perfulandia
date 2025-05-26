@@ -28,6 +28,9 @@ public class BoletaServiceImpl implements BoletaService  {
 
     @Override
     public Boleta save(Boleta boleta) {
+        Boleta boletaEntity = new Boleta();
+        boletaEntity.setFechaEmision(boleta.getFechaEmision());
+        boletaEntity.setNombreCliente(boleta.getNombreCliente());
         return this.boletaRepository.save(boleta);
     }
 }

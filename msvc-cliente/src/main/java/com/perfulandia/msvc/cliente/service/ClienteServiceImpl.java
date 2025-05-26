@@ -29,6 +29,12 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     public Cliente save(Cliente cliente) {
+        Cliente clienteEntity = new Cliente();
+        clienteEntity.setNombreCli(cliente.getNombreCli());
+        clienteEntity.setApellCli(cliente.getApellCli());
+        clienteEntity.setTelefono(cliente.getTelefono());
+        clienteEntity.setDireccion(cliente.getDireccion());
+        clienteEntity.setCorreoElectronico(cliente.getCorreoElectronico());
         return this.clienteRepository.save(cliente);
     }
 }
