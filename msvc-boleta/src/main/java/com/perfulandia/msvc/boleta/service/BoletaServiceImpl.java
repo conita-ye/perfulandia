@@ -1,5 +1,6 @@
 package com.perfulandia.msvc.boleta.service;
 
+import com.perfulandia.msvc.boleta.exceptions.BoletaException;
 import com.perfulandia.msvc.boleta.model.Boleta;
 import com.perfulandia.msvc.boleta.repository.BoletaRepository;
 import com.perfulandia.msvc.boleta.service.BoletaService;
@@ -21,7 +22,7 @@ public class BoletaServiceImpl {
         @Override
         public Boleta findById(Long id) {
             return this.boletaRepository.findById(id).orElseThrow(
-                    () -> new BoletaException ("La boleta con id"+id+" no se encuentra en la base de datos")
+                    () -> new BoletaException("La boleta con id"+id+" no se encuentra en la base de datos")
             );
         }
 
