@@ -1,9 +1,7 @@
 package com.perfulandia.msvc.inventario.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -14,7 +12,10 @@ import lombok.*;
 public class Inventario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idInventario;
+
+    @Column (nullable = false)
+    @NotBlank(message = "El campo de Stock no puede estar vacio")
     private int stock;
 
 }
