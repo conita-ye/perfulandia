@@ -7,5 +7,6 @@ public interface ProductoService {
     public List<Producto> listarProducto();
     public Producto findById(Long id);
     public Producto guardarProducto(Producto producto);
+    public save (Producto producto);
     public void eliminarProducto(Long id);
 }

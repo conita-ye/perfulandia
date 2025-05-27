@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public abstract class ProductoServiceImpl implements ProductoService {
 
@@ -28,7 +27,7 @@ public abstract class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Producto save(Producto producto){
+    public Producto save (Producto producto){
         return this.productoRepository.save(producto);
     }
 }

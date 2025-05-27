@@ -1,5 +1,7 @@
 package com.perfulandia.msvc.producto.controller;
 
+import com.perfulandia.msvc.producto.model.entities.Producto;
+import com.perfulandia.msvc.producto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
