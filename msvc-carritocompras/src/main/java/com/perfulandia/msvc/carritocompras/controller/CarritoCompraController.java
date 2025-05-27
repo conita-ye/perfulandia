@@ -1,51 +1,40 @@
 package com.perfulandia.msvc.carritocompras.controller;
 
+
 import com.perfulandia.msvc.carritocompras.model.CarritoCompra;
 import com.perfulandia.msvc.carritocompras.service.CarritoCompraService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/carritoCompra")
+@RequestMapping("/api/v1/carritoCompras")
+@Validated
 public class CarritoCompraController {
-
-    private final CarritoCompraService carritoCompraService;
-
     @Autowired
-    public CarritoCompraController(CarritoCompraService carritoCompraService) {
-        this.carritoCompraService = carritoCompraService;
-    }
+    private CarritoCompraService carritoCompraService;
 
-    // Obtener todos los carritos de compras
     @GetMapping
-    public List<CarritoCompra> obtenerTodos() {
-        return carritoCompraService.obtenerTodos();
+    public ResponseEntity<List<CarritoCompra>> findAll(){
+        return ResponseEntity.status(HttpStatusCode.OK).body(carritoCompraService.findAll());
     }
 
-    // Obtener carrito de compras por ID
     @GetMapping("/{id}")
-    public ResponseEntity<CarritoCompra> obtenerPorId(@PathVariable Long id) {
-        Optional<CarritoCompra> carritoCompra = carritoCompraService.obtenerPorId(id);
-        return carritoCompra.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<CarritoCompra> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(carritoCompraService.findById(id));
     }
 
-    // Crear un nuevo carrito de compras
     @PostMapping
-    public ResponseEntity<CarritoCompra> guardar(@RequestBody CarritoCompra carritoCompra) {
-        CarritoCompra nuevoCarrito = carritoCompraService.guardar(carritoCompra);
-        return new ResponseEntity<>(nuevoCarrito, HttpStatus.CREATED);
+    public ResponseEntity<CarritoCompra> save(@RequestBody @Valid CarritoCompra carritoCompra){
+        return ResponseEntity.status(HttpStatus.CREATED).body(carritoCompraService.save(carritoCompra));
     }
 
-    // Eliminar un carrito de compras por ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        carritoCompraService.eliminar(id);
-        return ResponseEntity.noContent().build();
-    }
+
 }
 
