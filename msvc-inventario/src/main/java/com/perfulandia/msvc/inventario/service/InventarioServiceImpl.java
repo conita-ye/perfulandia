@@ -29,7 +29,7 @@ public class InventarioServiceImpl implements InventarioService{
     @Override
     public Inventario save(Inventario inventario){
         Inventario inventarioEntity = new Inventario();
-        inventarioEntity.setId(inventario.getId());
+        inventarioEntity.setIdInventario(inventario.getIdInventario());
         inventarioEntity.setStock(inventario.getStock());
         return this.inventarioRepository.save(inventario);
     }
