@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 
-public class BoletaServiceImpl {
+@Service
+public class BoletaServiceImpl implements BoletaService {
         @Autowired
         private BoletaRepository boletaRepository;
 
         @Override
-        public List<Boleta> finAll() {
+        public List<Boleta> findAll () {
             return this.boletaRepository.findAll();
         }
 
@@ -26,7 +26,7 @@ public class BoletaServiceImpl {
         }
 
         @Override
-        public Boleta save(Boleta boleta) {
+        public Boleta save (Boleta boleta) {
             Boleta boletaEntity = new Boleta();
             boletaEntity.setFechaEmision(boleta.getFechaEmision());
             boletaEntity.setNombreCliente(boleta.getNombreCliente());

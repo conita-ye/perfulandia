@@ -1,21 +1,28 @@
 package com.perulandia.msvc.sucursal.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
-@Data
+@Table(name = "sucursales")
 @Getter @Setter @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class Sucursal {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long Id;
-        private String Nombre;
-        private String Direccion;
-        private String Ciudad;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idSucursal;
+
+    @NotBlank(message = "El campo de nombre no puede estar vacío")
+    @Column (nullable = false)
+    private String nombre;
+
+    @NotBlank(message = "El campo de dirección no puede estar vacío")
+    @Column (nullable = false)
+    private String direccion;
+
+    @NotBlank(message = "El campo de correo electrónico no puede estar vacío")
+    @Column (nullable = false)
+    private String ciudad;
+
 }

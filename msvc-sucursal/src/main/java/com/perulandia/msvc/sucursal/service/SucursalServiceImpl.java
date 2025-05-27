@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class SucursalServiceImpl implements SucursalService {
+public class SucursalServiceImpl implements SucursalService {
     @Autowired
     private SucursalRepository sucursalRepository;
 
