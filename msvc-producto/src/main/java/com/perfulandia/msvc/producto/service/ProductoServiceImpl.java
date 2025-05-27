@@ -1,10 +1,11 @@
 package com.perfulandia.msvc.producto.service;
 
+import com.perfulandia.msvc.producto.exceptions.ProductoException;
 import com.perfulandia.msvc.producto.model.Producto;
+import com.perfulandia.msvc.producto.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.perfulandia.msvc.producto.repository.ProductoRepository;
-import com.perfulandia.msvc.producto.exceptions.ProductoException;
+
 import java.util.List;
 
 
@@ -15,19 +16,20 @@ public abstract class ProductoServiceImpl implements ProductoService {
     private ProductoRepository productoRepository;
 
     @Override
-    public List finAll() {
+    public List <Producto> findAll (){
         return this.productoRepository.findAll();
     }
 
     @Override
-    public Producto findById(Long id) throws Throwable {
-        return (Producto) this.productoRepository.findById(id).orElseThrow(
-                () -> new ProductoException("La boleta con id"+id+" no se encuentra en la base de datos")
+    public Producto findById(Long id) {
+        return this.productoRepository.findById(id).orElseThrow(
+                () -> new ProductoException ("La boleta con id"+id+" no se encuentra en la base de datos")
         );
     }
+
     @Override
-    public Producto save(Producto producto) {
-        return (Producto) this.productoRepository.save(producto);
+    public Producto save(Producto producto){
+        return this.productoRepository.save(producto);
     }
 }
 
