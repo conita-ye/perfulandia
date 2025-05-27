@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.cliente.controller;
 
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import com.perfulandia.msvc.cliente.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
