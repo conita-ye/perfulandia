@@ -30,7 +30,7 @@ public class InventarioServiceImpl implements InventarioService{
     public Inventario save(Inventario inventario){
         Inventario inventarioEntity = new Inventario();
         inventarioEntity.setId(inventario.getId());
-        inventarioEntity.setStock(inventario.setStock());
+        inventarioEntity.setStock(inventario.getStock());
         return this.inventarioRepository.save(inventario);
     }
 }
