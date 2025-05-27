@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.cliente.model;
+package com.perfulandia.msvc.cliente.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

@@ -1,6 +1,6 @@
 package com.perulandia.msvc.sucursal.controller;
 
-import com.perulandia.msvc.sucursal.model.Sucursal;
+import com.perulandia.msvc.sucursal.model.entities.Sucursal;
 import com.perulandia.msvc.sucursal.service.SucursalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/sucursales")
+@RequestMapping("api/v1/sucursales")
 @Validated
 public class SucursalController {
     @Autowired

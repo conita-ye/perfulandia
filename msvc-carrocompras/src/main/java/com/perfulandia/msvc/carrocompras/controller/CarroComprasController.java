@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.carrocompras.controller;
 
-import com.perfulandia.msvc.carrocompras.model.CarroCompras;
+import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import com.perfulandia.msvc.carrocompras.service.CarroComprasService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

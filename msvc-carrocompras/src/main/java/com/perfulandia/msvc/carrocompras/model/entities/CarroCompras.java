@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.carrocompras.model;
+package com.perfulandia.msvc.carrocompras.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;

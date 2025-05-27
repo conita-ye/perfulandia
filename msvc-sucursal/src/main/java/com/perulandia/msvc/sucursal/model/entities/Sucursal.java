@@ -1,4 +1,4 @@
-package com.perulandia.msvc.sucursal.model;
+package com.perulandia.msvc.sucursal.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

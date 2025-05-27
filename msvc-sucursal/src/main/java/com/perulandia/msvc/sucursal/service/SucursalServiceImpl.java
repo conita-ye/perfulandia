@@ -1,7 +1,7 @@
 package com.perulandia.msvc.sucursal.service;
 
 import com.perulandia.msvc.sucursal.exception.SucursalException;
-import com.perulandia.msvc.sucursal.model.Sucursal;
+import com.perulandia.msvc.sucursal.model.entities.Sucursal;
 import com.perulandia.msvc.sucursal.repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
