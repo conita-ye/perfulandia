@@ -16,7 +16,7 @@ public class BoletaController {
 
     @GetMapping
     public ResponseEntity<List<Boleta>> findAll () {
-        return ResponseEntity.status(HttpStatus.OK).body(boletaService.finAll());
+        return ResponseEntity.status(HttpStatus.OK).body(boletaService.findAll());
     }
 
     @GetMapping("/{id}")
