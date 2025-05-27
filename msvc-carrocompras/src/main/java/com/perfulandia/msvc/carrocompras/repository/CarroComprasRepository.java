@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.carrocompras.repository;
 
-import com.perfulandia.msvc.carrocompras.model.CarroCompras;
+import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

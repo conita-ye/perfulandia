@@ -2,6 +2,7 @@ package com.perfulandia.msvc.cliente.controller;
 
 import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import com.perfulandia.msvc.cliente.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> save(@Validated @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> save(@RequestBody @Valid Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(cliente));
     }
 }

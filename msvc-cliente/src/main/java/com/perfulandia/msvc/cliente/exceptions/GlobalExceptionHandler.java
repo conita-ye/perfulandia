@@ -1,7 +1,5 @@
 package com.perfulandia.msvc.cliente.exceptions;
 
-
-
 import com.perfulandia.msvc.cliente.dtos.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

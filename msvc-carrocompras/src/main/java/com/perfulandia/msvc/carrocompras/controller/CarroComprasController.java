@@ -1,17 +1,19 @@
 package com.perfulandia.msvc.carrocompras.controller;
 
-import com.perfulandia.msvc.carrocompras.model.CarroCompras;
+import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import com.perfulandia.msvc.carrocompras.service.CarroComprasService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/carros")
+@RequestMapping("api/v1/carros")
+@Validated
 public class CarroComprasController {
 
     @Autowired

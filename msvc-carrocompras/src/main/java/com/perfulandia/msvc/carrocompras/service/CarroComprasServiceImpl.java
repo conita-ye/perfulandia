@@ -3,7 +3,7 @@ package com.perfulandia.msvc.carrocompras.service;
 
 import com.perfulandia.msvc.carrocompras.exceptions.CarroComprasException;
 import com.perfulandia.msvc.carrocompras.repository.CarroComprasRepository;
-import com.perfulandia.msvc.carrocompras.model.CarroCompras;
+import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
