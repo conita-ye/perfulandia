@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.boleta.controller;
 
-import com.perfulandia.msvc.boleta.model.Boleta;
+import com.perfulandia.msvc.boleta.model.entities.Boleta;
 import com.perfulandia.msvc.boleta.service.BoletaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

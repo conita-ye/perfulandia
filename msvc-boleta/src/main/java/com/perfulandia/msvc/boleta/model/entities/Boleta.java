@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.boleta.model;
+package com.perfulandia.msvc.boleta.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -10,9 +10,6 @@ public class Boleta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idBoleta;
-
-    @Column(nullable = false, unique = true)
-    private Long numBoleta;
 
     @NotBlank(message = "El campo no puede estar vacio")
     @Column (nullable = false)
