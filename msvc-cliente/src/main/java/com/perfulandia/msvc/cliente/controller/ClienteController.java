@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/clientes")
 @Validated
-
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -25,7 +24,7 @@ public class ClienteController {
 
     @GetMapping ("/{id}")
     public ResponseEntity<Cliente> findById (@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByid(id));
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.findById(id));
     }
 
     @PostMapping
