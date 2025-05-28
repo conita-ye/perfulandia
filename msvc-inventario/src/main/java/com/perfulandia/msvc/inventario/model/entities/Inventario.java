@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.inventario.model;
+package com.perfulandia.msvc.inventario.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

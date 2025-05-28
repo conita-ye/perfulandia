@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.inventario.service;
 
-import com.perfulandia.msvc.inventario.model.Inventario;
+import com.perfulandia.msvc.inventario.model.entities.Inventario;
 import java.util.List;
 
 public interface InventarioService {
