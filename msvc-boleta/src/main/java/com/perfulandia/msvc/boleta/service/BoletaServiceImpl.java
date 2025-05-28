@@ -61,7 +61,7 @@ public class BoletaServiceImpl implements BoletaService {
                 Producto producto = this.productoClientRest.findById(boleta.getIdProducto());
             } catch (FeignException exception) {
                 throw new BoletaException ("El producto con id"+boleta.getIdProducto() + "no se encuentra en la base de datos"
-                        + "por ende no se puede generar el nexo de relacion");
+                        + "por ende no se puede generar el nexo de relación");
             }
 
             return this.boletaRepository.save(boleta);

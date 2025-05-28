@@ -30,5 +30,4 @@ public class Sucursal {
     @Column(nullable = false)
     private Long idInventario;
 
-
 }
