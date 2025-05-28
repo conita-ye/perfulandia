@@ -11,6 +11,4 @@ public class Boleta {
     private String fechaEmision;
     private String nombreCliente;
 
-
-
 }

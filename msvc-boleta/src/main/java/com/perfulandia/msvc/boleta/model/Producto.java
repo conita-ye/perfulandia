@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.inventario.model;
+package com.perfulandia.msvc.boleta.model;
 
 import lombok.*;
 import java.util.Date;
@@ -7,6 +7,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Producto {
+
     private Long id;
     private String nombreProducto;
     private Date fechaElaboracion;
