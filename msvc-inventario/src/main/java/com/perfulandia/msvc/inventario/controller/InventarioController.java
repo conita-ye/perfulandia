@@ -2,6 +2,7 @@ package com.perfulandia.msvc.inventario.controller;
 
 import com.perfulandia.msvc.inventario.model.Inventario;
 import com.perfulandia.msvc.inventario.service.InventarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class InventarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Inventario> save(@RequestBody @Validated Inventario inventario){
+    public ResponseEntity<Inventario> save(@RequestBody @Valid Inventario inventario){
         return ResponseEntity.status(HttpStatus.CREATED).body(inventarioService.save(inventario));
     }
 }

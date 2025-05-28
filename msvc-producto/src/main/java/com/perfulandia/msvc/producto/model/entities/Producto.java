@@ -32,7 +32,7 @@ public class Producto {
 
     @NotBlank(message = "El campo no puede estar vacio")
     @Column (nullable = false)
-    private String catergoria;
+    private String categoria;
 
     @NotNull (message = "El Stock no puede ser nulo")
     @Column (nullable = false)

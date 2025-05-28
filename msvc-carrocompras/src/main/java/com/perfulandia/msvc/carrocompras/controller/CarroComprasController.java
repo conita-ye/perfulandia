@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/carros")
+@RequestMapping("api/v1/carroCompras")
 @Validated
 public class CarroComprasController {
 

@@ -14,28 +14,25 @@ public class ProductoServiceImpl implements ProductoService {
         private ProductoRepository productoRepository;
 
         @Override
-        public List<Producto> findAll () {
-            return this.productoRepository.findAll();
+        public List<Producto> listarProducto() {
+            return productoRepository.findAll();
         }
 
         @Override
         public Producto findById(Long id) {
-            return this.productoRepository.findById(id).orElseThrow(
-                    () -> new ProductoException ("La boleta con id"+id+" no se encuentra en la base de datos")
-            );
+            return productoRepository.findById(id).orElseThrow(
+                    () -> new ProductoException("La boleta con id " + id + " no se encuentra en la base de datos"));
         }
 
-            @Override
-            public Producto save (Producto producto) {
-                Producto productoEntity = new Producto();
-                productoEntity.setNombreProducto(producto.getNombreProducto());
-                productoEntity.setPrecio(producto.getPrecio());
-                productoEntity.setCatergoria(producto.getCatergoria());
-                productoEntity.setStock(producto.getStock());
-                productoEntity.setFechaVencimiento(producto.getFechaVencimiento());
-                productoEntity.setFechaElaboracion(producto.getFechaElaboracion());
-                return this.productoRepository.save(producto);
-            }
+        @Override
+        public Producto guardarProducto(Producto producto) {
+            return productoRepository.save(producto);
+        }
+
+        @Override
+        public void eliminarProducto(Long id) {
+            productoRepository.deleteById(id);
+        }
 }
 
 
