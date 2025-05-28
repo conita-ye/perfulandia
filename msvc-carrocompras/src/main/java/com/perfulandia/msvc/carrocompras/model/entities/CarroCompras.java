@@ -29,5 +29,12 @@ public class CarroCompras {
      @Column(nullable = false)
      private Double precioUnitario;
 
+    @NotNull(message = "El ID del cliente no puede ser nulo")
+    @Column(nullable = false)
+    private Long idCliente;
+
+    @NotNull(message = "El ID de la boleta no puede ser nulo")
+    @Column(nullable = false)
+    private Long idBoleta;
 }
 
