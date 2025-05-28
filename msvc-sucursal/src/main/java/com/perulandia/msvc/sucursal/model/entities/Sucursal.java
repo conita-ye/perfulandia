@@ -2,6 +2,7 @@ package com.perulandia.msvc.sucursal.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -24,5 +25,10 @@ public class Sucursal {
     @NotBlank(message = "El campo de correo electrónico no puede estar vacío")
     @Column (nullable = false)
     private String ciudad;
+
+    @NotNull(message = "El ID de inventario no puede ser nulo")
+    @Column(nullable = false)
+    private Long idInventario;
+
 
 }
