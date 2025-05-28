@@ -4,9 +4,7 @@ import com.perfulandia.msvc.producto.model.entities.Producto;
 import java.util.List;
 
 public interface ProductoService {
-    public List<Producto> listarProducto();
-    public Producto findById(Long id);
-    public Producto guardarProducto(Producto producto);
-    public save (Producto producto);
-    public void eliminarProducto(Long id);
+    List <Producto> findAll();
+    Producto findById (Long id);
+    Producto save (Producto producto);
 }
