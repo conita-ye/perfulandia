@@ -2,7 +2,6 @@ package com.perulandia.msvc.sucursal.clients;
 
 import com.perulandia.msvc.sucursal.model.Inventario;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

@@ -1,5 +1,6 @@
 package com.perulandia.msvc.sucursal.service;
 
+import com.perulandia.msvc.sucursal.clients.InventarioClientRest;
 import com.perulandia.msvc.sucursal.exception.SucursalException;
 import com.perulandia.msvc.sucursal.model.Inventario;
 import com.perulandia.msvc.sucursal.model.entities.Sucursal;
@@ -14,6 +15,8 @@ import java.util.List;
 public class SucursalServiceImpl implements SucursalService {
     @Autowired
     private SucursalRepository sucursalRepository;
+    @Autowired
+    private InventarioClientRest inventarioClientRest;
 
     @Override
     public List<Sucursal> findAll() {
