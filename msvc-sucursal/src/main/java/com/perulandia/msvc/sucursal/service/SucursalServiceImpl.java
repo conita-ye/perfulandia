@@ -1,8 +1,10 @@
 package com.perulandia.msvc.sucursal.service;
 
 import com.perulandia.msvc.sucursal.exception.SucursalException;
+import com.perulandia.msvc.sucursal.model.Inventario;
 import com.perulandia.msvc.sucursal.model.entities.Sucursal;
 import com.perulandia.msvc.sucursal.repository.SucursalRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,13 @@ public class SucursalServiceImpl implements SucursalService {
 
     @Override
     public Sucursal save (Sucursal sucursal) {
+        try{
+            Inventario inventario = this.inventarioClientRest.findById(sucursal.getIdInventario());
+        }catch (FeignException exception){
+            throw new SucursalException("La inventario con id"+sucursal.getIdInventario()+"no se encuentra en la base de datos"
+                    + "por ende no se puede generar el nexo de relacion");
+
+        }
         return this.sucursalRepository.save(sucursal);
     }
 }
