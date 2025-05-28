@@ -1,8 +1,10 @@
 package com.perfulandia.msvc.inventario.service;
 
 
+import com.perfulandia.msvc.inventario.clients.ProductoClientRest;
+import com.perfulandia.msvc.inventario.clients.SucursalClientRest;
 import com.perfulandia.msvc.inventario.exception.InventarioException;
-import com.perfulandia.msvc.inventario.model.Inventario;
+import com.perfulandia.msvc.inventario.model.entities.Inventario;
 import com.perfulandia.msvc.inventario.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,10 @@ import java.util.List;
 public class InventarioServiceImpl implements InventarioService{
     @Autowired
     private InventarioRepository inventarioRepository;
+    @Autowired
+    private ProductoClientRest productoClientRest;
+    @Autowired
+    private SucursalClientRest sucursalClientRest;
 
     @Override
     public List<Inventario>findAll(){
@@ -28,6 +34,8 @@ public class InventarioServiceImpl implements InventarioService{
 
     @Override
     public Inventario save(Inventario inventario){
+        Producto producto = this.productoClientRest.findById(inventario.getProducto());
+        Sucursal sucursal = this.sucursalClientRest.findById();
         Inventario inventarioEntity = new Inventario();
         inventarioEntity.setIdInventario(inventario.getIdInventario());
         inventarioEntity.setStock(inventario.getStock());

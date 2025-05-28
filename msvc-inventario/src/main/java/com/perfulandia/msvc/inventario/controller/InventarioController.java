@@ -1,12 +1,11 @@
 package com.perfulandia.msvc.inventario.controller;
 
-import com.perfulandia.msvc.inventario.model.Inventario;
+import com.perfulandia.msvc.inventario.model.entities.Inventario;
 import com.perfulandia.msvc.inventario.service.InventarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
