@@ -38,14 +38,14 @@ public class InventarioServiceImpl implements InventarioService{
     @Override
     public Inventario save(Inventario inventario){
         try{
-            Producto producto = this.productoClientRest.findById(inventario.getProducto());
+            Producto producto = this.productoClientRest.findById(inventario.getIdProducto());
         } catch (FeignException exception) {
             throw new InventarioException("El producto con id"+inventario.getIdProducto()+"no se encuentra en la base de datos"
                     + "por ende no se puede generar el nexo de relacion");
         }
 
         try{
-            Sucursal sucursal = this.sucursalClientRest.findById(inventario.getSucursal());
+            Sucursal sucursal = this.sucursalClientRest.findById(inventario.getIdSucursal());
         }catch(FeignException exception){
             throw new InventarioException("la sucursal con id"+inventario.getIdSucursal()+"no se encuentra en la base de datos"
             + "por ende no se puede generar el nexo de relacion");
