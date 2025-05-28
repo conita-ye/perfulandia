@@ -4,8 +4,11 @@ package com.perfulandia.msvc.inventario.service;
 import com.perfulandia.msvc.inventario.clients.ProductoClientRest;
 import com.perfulandia.msvc.inventario.clients.SucursalClientRest;
 import com.perfulandia.msvc.inventario.exception.InventarioException;
-import com.perfulandia.msvc.inventario.model.entities.Inventario;
+import com.perfulandia.msvc.inventario.model.Producto;
+import com.perfulandia.msvc.inventario.model.Sucursal;
 import com.perfulandia.msvc.inventario.repository.InventarioRepository;
+import com.perfulandia.msvc.inventario.model.entities.Inventario;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +37,20 @@ public class InventarioServiceImpl implements InventarioService{
 
     @Override
     public Inventario save(Inventario inventario){
-        Producto producto = this.productoClientRest.findById(inventario.getProducto());
-        Sucursal sucursal = this.sucursalClientRest.findById();
+        try{
+            Producto producto = this.productoClientRest.findById(inventario.getProducto());
+        } catch (FeignException exception) {
+            throw new InventarioException("El producto con id"+inventario.getIdProducto()+"no se encuentra en la base de datos"
+                    + "por ende no se puede generar el nexo de relacion");
+        }
+
+        try{
+            Sucursal sucursal = this.sucursalClientRest.findById(inventario.getSucursal());
+        }catch(FeignException exception){
+            throw new InventarioException("la sucursal con id"+inventario.getIdSucursal()+"no se encuentra en la base de datos"
+            + "por ende no se puede generar el nexo de relacion");
+        }
+
         Inventario inventarioEntity = new Inventario();
         inventarioEntity.setIdInventario(inventario.getIdInventario());
         inventarioEntity.setStock(inventario.getStock());
