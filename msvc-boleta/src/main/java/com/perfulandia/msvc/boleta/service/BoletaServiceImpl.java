@@ -42,7 +42,7 @@ public class BoletaServiceImpl implements BoletaService {
         public Boleta save (Boleta boleta) {
 
             try {
-                CarroCompras carroCompras = this.carroComprasClientRest.findById(boleta.getIdBoleta());
+                CarroCompras carroCompras = this.carroComprasClientRest.findById(boleta.getIdCarroCompras());
             }
             catch (FeignException exception){
                 throw new BoletaException("El carro de compras con id"+boleta.getIdCarroCompras() + " no se encuentra en la base de datos"
