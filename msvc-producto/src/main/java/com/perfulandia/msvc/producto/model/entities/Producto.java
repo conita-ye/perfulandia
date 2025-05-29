@@ -28,7 +28,7 @@ public class Producto {
 
     @NotBlank(message = "El campo no puede estar vacio")
     @Column (nullable = false)
-    private Date fechaVencimiento;
+    private String fechaVencimiento;
 
     @NotBlank(message = "El campo no puede estar vacio")
     @Column (nullable = false)
