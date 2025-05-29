@@ -18,8 +18,6 @@ public class Inventario {
 
     @Column (nullable = false)
     @NotBlank(message = "El campo de Stock no puede estar vacio")
-    @NotNull
-    @Min(1)
     private int stock;
 
     @NotNull(message = "El ID del producto no puede ser nulo")
