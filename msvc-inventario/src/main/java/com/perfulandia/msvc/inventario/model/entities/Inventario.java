@@ -17,8 +17,8 @@ public class Inventario {
     private Long idInventario;
 
     @Column (nullable = false)
-    @NotBlank(message = "El campo de Stock no puede estar vacio")
-    private int stock;
+    @NotNull(message = "El stock no puede ser nulo")
+    private Integer stock;
 
     @NotNull(message = "El ID del producto no puede ser nulo")
     @Column(nullable = false)

@@ -34,9 +34,9 @@ public class Producto {
     @Column (nullable = false)
     private String categoria;
 
-    @NotNull (message = "El Stock no puede ser nulo")
     @Column (nullable = false)
-    private int stock;
+    @NotNull(message = "El stock no puede ser nulo")
+    private Integer stock;
 
     @NotNull (message = "El precio no puede ser nulo")
     @Column (nullable = false)
