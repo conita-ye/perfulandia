@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "msvc-sucursal",url = "Localhost:8080/api/v1/sucursales")
+@FeignClient(name = "msvc-sucursal",url = "Localhost:8006/api/v1/sucursales")
 public interface SucursalClientRest {
 
     @GetMapping("/{id}")

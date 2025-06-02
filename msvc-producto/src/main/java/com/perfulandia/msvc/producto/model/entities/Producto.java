@@ -42,8 +42,5 @@ public class Producto {
     @Column (nullable = false)
     private double precio;
 
-    @NotNull(message = "El ID de inventario no puede ser nulo")
-    @Column(nullable = false)
-    private Long idInventario;
 
 }

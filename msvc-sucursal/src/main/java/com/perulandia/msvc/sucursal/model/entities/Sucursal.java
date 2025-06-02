@@ -26,8 +26,4 @@ public class Sucursal {
     @Column (nullable = false)
     private String ciudad;
 
-    @NotNull(message = "El ID de inventario no puede ser nulo")
-    @Column(nullable = false)
-    private Long idInventario;
-
 }

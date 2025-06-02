@@ -31,12 +31,12 @@ public class ProductoServiceImpl implements ProductoService {
 
         @Override
         public Producto guardarProducto(Producto producto) {
-            try{
-                Inventario inventario = this.inventarioClientRest.findById(producto.getIdInventario());
-            }catch (FeignException exception){
-                throw new ProductoException("El inventario con id "+producto.getIdInventario() + " no se encuentra en la base de datos"
-                        + " por ende no se puede generar el nexo de relación");
-            }
+//            try{
+//                Inventario inventario = this.inventarioClientRest.findById(producto.getIdInventario());
+//            }catch (FeignException exception){
+//                throw new ProductoException("El inventario con id "+producto.getIdInventario() + " no se encuentra en la base de datos"
+//                        + " por ende no se puede generar el nexo de relación");
+//            }
             return productoRepository.save(producto);
         }
 
