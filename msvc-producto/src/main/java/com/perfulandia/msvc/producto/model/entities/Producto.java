@@ -22,11 +22,11 @@ public class Producto {
     @Column (nullable = false)
     private String nombreProducto;
 
-    @NotBlank(message = "El campo no puede estar vacio")
+    @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
     private Date fechaElaboracion;
 
-    @NotBlank(message = "El campo no puede estar vacio")
+    @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
     private String fechaVencimiento;
 

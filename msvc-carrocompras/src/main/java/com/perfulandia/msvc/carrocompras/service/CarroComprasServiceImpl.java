@@ -31,7 +31,7 @@ public class CarroComprasServiceImpl implements CarroComprasService {
     @Override
     public CarroCompras findById(Long id) {
         return this.carroComprasRepository.findById(id).orElseThrow (
-                () -> new CarroComprasException("El carro con id"+id+" no se encuentra en la base de datos")
+                () -> new CarroComprasException("El carro con id "+id+" no se encuentra en la base de datos")
         );
     }
 
@@ -41,7 +41,7 @@ public class CarroComprasServiceImpl implements CarroComprasService {
             Cliente cliente = this.clienteClientRest.findById(carroCompras.getIdCliente());
         }
         catch (FeignException exception){
-            throw new CarroComprasException("El cliente con id"+carroCompras.getIdCliente()+" no se encuentra en la base de datos"
+            throw new CarroComprasException("El cliente con id "+carroCompras.getIdCliente()+" no se encuentra en la base de datos"
                     + " por ende no puedo generar el nexo de relación");
         }
 
@@ -49,8 +49,8 @@ public class CarroComprasServiceImpl implements CarroComprasService {
             Boleta boleta = this.boletaClientRest.findById(carroCompras.getIdBoleta());
         }
         catch (FeignException exception){
-            throw new CarroComprasException("La boleta con id"+carroCompras.getIdBoleta()+ "no se encuentra en la base de datos"
-                    + "por ende no puedo generar el nexo de relación");
+            throw new CarroComprasException("La boleta con id "+carroCompras.getIdBoleta()+ " no se encuentra en la base de datos"
+                    + " por ende no puedo generar el nexo de relación");
         }
 
         return this.carroComprasRepository.save (carroCompras);

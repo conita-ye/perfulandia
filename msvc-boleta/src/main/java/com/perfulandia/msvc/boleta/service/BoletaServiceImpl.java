@@ -45,7 +45,7 @@ public class BoletaServiceImpl implements BoletaService {
                 CarroCompras carroCompras = this.carroComprasClientRest.findById(boleta.getIdCarroCompras());
             }
             catch (FeignException exception){
-                throw new BoletaException("El carro de compras con id"+boleta.getIdCarroCompras() + " no se encuentra en la base de datos"
+                throw new BoletaException("El carro de compras con id "+boleta.getIdCarroCompras() + " no se encuentra en la base de datos"
                         +" por ende no puedo generar el nexo de relación");
             }
 
@@ -60,8 +60,8 @@ public class BoletaServiceImpl implements BoletaService {
             try{
                 Producto producto = this.productoClientRest.findById(boleta.getIdProducto());
             } catch (FeignException exception) {
-                throw new BoletaException ("El producto con id"+boleta.getIdProducto() + "no se encuentra en la base de datos"
-                        + "por ende no se puede generar el nexo de relación");
+                throw new BoletaException ("El producto con id "+boleta.getIdProducto() + " no se encuentra en la base de datos"
+                        + " por ende no se puede generar el nexo de relación");
             }
 
             return this.boletaRepository.save(boleta);

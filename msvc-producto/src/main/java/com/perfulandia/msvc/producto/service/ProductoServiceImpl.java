@@ -34,8 +34,8 @@ public class ProductoServiceImpl implements ProductoService {
             try{
                 Inventario inventario = this.inventarioClientRest.findById(producto.getIdInventario());
             }catch (FeignException exception){
-                throw new ProductoException("El inventario con id"+producto.getIdInventario() + "no se encuentra en la base de datos"
-                        + "por ende no se puede generar el nexo de relación");
+                throw new ProductoException("El inventario con id "+producto.getIdInventario() + " no se encuentra en la base de datos"
+                        + " por ende no se puede generar el nexo de relación");
             }
             return productoRepository.save(producto);
         }
