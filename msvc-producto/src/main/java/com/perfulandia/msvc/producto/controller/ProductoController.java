@@ -2,6 +2,9 @@ package com.perfulandia.msvc.producto.controller;
 
 import com.perfulandia.msvc.producto.model.entities.Producto;
 import com.perfulandia.msvc.producto.service.ProductoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping ("api/v1/productos")
 @Validated
+@Tag(name = "Productos", description = "Esta seccion contiene los CRUD de producto")
 
 public class ProductoController {
 
@@ -22,6 +26,10 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping
+    @Operation(
+            summary = "Listar todos los productos", description = "Este metodo debe listar los productos")
+    @ApiResponse(
+            responseCode = "200", description = "Se listaron los productos")
     public List<Producto> listarProducto() {
         return productoService.listarProducto();
     }
