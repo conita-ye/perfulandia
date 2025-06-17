@@ -4,7 +4,8 @@ import com.perfulandia.msvc.boleta.model.entities.Boleta;
 import java.util.List;
 
 public interface BoletaService {
-    List<Boleta> findAll ();
+    List<Boleta> listarBoleta();
     Boleta findById (Long id);
     Boleta save (Boleta boleta);
+    void eliminarBoleta(Long id);
 }
