@@ -2,6 +2,8 @@ package com.perfulandia.msvc.boleta.init;
 
 import com.perfulandia.msvc.boleta.model.entities.Boleta;
 import com.perfulandia.msvc.boleta.repository.BoletaRepository;
+import net.datafaker.Faker;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,8 +26,6 @@ public class LoadDataBase implements CommandLineRunner {
         Faker faker = new Faker(Locale.of("es", "CL"));
         for (int i = 0; i < 10; i++) {
             Boleta boleta = new Boleta();
-
-
 
         }
     }

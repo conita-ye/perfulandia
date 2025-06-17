@@ -5,7 +5,6 @@ import com.perfulandia.msvc.producto.exceptions.ProductoException;
 import com.perfulandia.msvc.producto.model.Inventario;
 import com.perfulandia.msvc.producto.model.entities.Producto;
 import com.perfulandia.msvc.producto.repository.ProductoRepository;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
