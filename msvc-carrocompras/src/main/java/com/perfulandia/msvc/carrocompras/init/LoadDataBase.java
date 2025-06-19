@@ -1,6 +1,5 @@
 package com.perfulandia.msvc.carrocompras.init;
 
-
 import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import com.perfulandia.msvc.carrocompras.repository.CarroComprasRepository;
 import net.datafaker.Faker;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+
 @Profile("dev")
 @Component
 
@@ -24,10 +24,9 @@ public class LoadDataBase implements CommandLineRunner {
 
     @Override
     public void run (String... args) throws Exception {
-        Faker faker = new Faker(Locale.of(language:"es",country:"CL"));
+        Faker faker = new Faker(Locale.of("es", "CL"));
         for (int i = 0; i < 10; i++) {
             CarroCompras carroCompras = new CarroCompras();
         }
-
     }
 }
