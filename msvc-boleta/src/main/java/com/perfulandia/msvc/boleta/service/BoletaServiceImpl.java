@@ -1,12 +1,7 @@
 package com.perfulandia.msvc.boleta.service;
 
-import com.perfulandia.msvc.boleta.clients.CarroComprasClientRest;
-import com.perfulandia.msvc.boleta.clients.ClienteClientRest;
 import com.perfulandia.msvc.boleta.clients.ProductoClientRest;
 import com.perfulandia.msvc.boleta.exceptions.BoletaException;
-import com.perfulandia.msvc.boleta.model.CarroCompras;
-import com.perfulandia.msvc.boleta.model.Cliente;
-import com.perfulandia.msvc.boleta.model.Producto;
 import com.perfulandia.msvc.boleta.model.entities.Boleta;
 import com.perfulandia.msvc.boleta.repository.BoletaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,8 @@ import com.perfulandia.msvc.cliente.model.Cliente;
 import java.util.List;
 
 public interface ClienteService {
-    List<Cliente> findAll();
+    List<Cliente> listarCliente();
     Cliente findById(Long id);
     Cliente save(Cliente cliente);
+    void eliminarCliente(Long id);
 }

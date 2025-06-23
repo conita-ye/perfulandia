@@ -28,7 +28,7 @@ public class BoletaController {
             summary = "Listar todas las boletas", description = "Este metodo debe listar las boletas")
 
     @ApiResponse(
-            responseCode = "200", description = "Se listaron los productos")
+            responseCode = "200", description = "Se listaron las boletas")
     public List<Boleta> listarBoleta(){
         return boletaService.listarBoleta();
     }
@@ -37,7 +37,7 @@ public class BoletaController {
     public ResponseEntity<Boleta> findById (@PathVariable Long id) {
         Optional <Boleta> boleta = Optional.ofNullable(boletaService.findById(id));
         return boleta.map(ResponseEntity::ok)
-                .orElseGet(()-> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

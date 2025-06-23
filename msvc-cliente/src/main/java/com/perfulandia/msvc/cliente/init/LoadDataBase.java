@@ -1,7 +1,7 @@
-package com.perfulandia.msvc.boleta.init;
+package com.perfulandia.msvc.cliente.init;
 
-import com.perfulandia.msvc.boleta.model.entities.Boleta;
-import com.perfulandia.msvc.boleta.repository.BoletaRepository;
+import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.repository.ClienteRepository;
 import net.datafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import java.util.Locale;
 
 public class LoadDataBase implements CommandLineRunner {
     @Autowired
-    private BoletaRepository boletaRepository;
+    private ClienteRepository clienteRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(LoadDataBase.class);
 
@@ -25,7 +25,7 @@ public class LoadDataBase implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Faker faker = new Faker(Locale.of("es", "CL"));
         for (int i = 0; i < 10; i++) {
-            Boleta boleta = new Boleta();
+            Cliente cliente = new Cliente();
 
         }
     }
