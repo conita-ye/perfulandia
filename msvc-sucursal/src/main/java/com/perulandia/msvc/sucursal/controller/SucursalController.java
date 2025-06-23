@@ -63,6 +63,21 @@ public class SucursalController {
     }
 
     @PostMapping
+    @Operation(
+            summary = "Guarda una sucursal por su id",
+            description = "Este metodo debe guardar una sucursal por su id"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Se guardo la sucursal"),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Error - Sucursal con ID no existe",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                    )
+            )
+    })
     public ResponseEntity<Sucursal> save (@RequestBody @Valid Sucursal sucursal) {
         return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.save(sucursal));
     }

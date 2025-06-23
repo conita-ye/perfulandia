@@ -87,6 +87,24 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
+    @Operation(
+            summary = "Actualizar un producto  por su id",
+            description = "Este metodo debe obtener un producto por su id"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Se retorna el producto encontrado"),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Error - Producto con ID no existe",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                    )
+            )
+    })
+    @Parameters(value = {
+            @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
+    })
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @Valid @RequestBody Producto producto) {
         Optional<Producto> productoExistente = Optional.ofNullable(productoService.findById(id));
 
@@ -107,6 +125,24 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(
+            summary = "Eliminar un producto  por su id",
+            description = "Este metodo debe eliminar un producto por su id"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Se elimina el producto encontrado"),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Error - Producto con ID no existe",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                    )
+            )
+    })
+    @Parameters(value = {
+            @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
+    })
     public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
         Optional<Producto> producto = Optional.ofNullable(productoService.findById(id));
 
