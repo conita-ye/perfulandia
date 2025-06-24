@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.cliente.repository;
 
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
