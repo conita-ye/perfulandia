@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class SucursalDTOModelAssembler implements RepresentationModelAssembler <SucursalDTO, EntityModel<SucursalDTO> {
+public class SucursalDTOModelAssembler implements RepresentationModelAssembler <SucursalDTO, EntityModel<SucursalDTO>>{
     @Override
     public EntityModel<SucursalDTO> toModel(SucursalDTO entity){
         return EntityModel.of(
