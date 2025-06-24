@@ -4,7 +4,7 @@ package services;
 import com.perulandia.msvc.sucursal.model.entities.Sucursal;
 import com.perulandia.msvc.sucursal.repository.SucursalRepository;
 import com.perulandia.msvc.sucursal.service.SucursalServiceImpl;
-import com.perulandia.msvc.sucursal.exception.SucursalException;
+import com.perulandia.msvc.sucursal.exception.*;
 
 import net.datafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,11 +33,11 @@ public class SucursalServiceTest {
     private List<Sucursal> sucursal = new ArrayList<>();
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         this.sucursalPrueba = new Sucursal(
         );
-        Faker faker = new Faker(Locale.of("es","CL"));
-        for(int i=0;i<100;i++){
+        Faker faker = new Faker(Locale.of("es", "CL"));
+        for (int i = 0; i < 100; i++) {
             Sucursal sucursal = new Sucursal();
 
             String nombre = faker.company().name();
@@ -51,12 +51,12 @@ public class SucursalServiceTest {
 
     @Test
     @DisplayName("Debe buscar un medico un I que n existe")
-    public void shouldNotFindMedicoId(){
+    public void shouldNotFindMedicoId() {
         Long idInexistente = (Long) 999L;
         when(sucursalRepository.findById(idInexistente)).thenReturn(Optional.empty());
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             sucursalService.findById(idInexistente);
-        }).isInstanceOf(sucursalException.class)
+        }).isInstanceOf(SucursalException.class)
                 .hasMessageContaining("El medico con id " +
                         idInexistente + " no se encuentra en la base de datos");
         verify(sucursalRepository, times(1)).findById(idInexistente);
@@ -71,3 +71,4 @@ public class SucursalServiceTest {
         assertThat(result).isEqualTo(sucursalPrueba);
         verify(sucursalRepository, times(1)).save(any(Sucursal.class));
     }
+}
