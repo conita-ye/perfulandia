@@ -1,7 +1,6 @@
 package com.perfulandia.msvc.producto.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.perfulandia.msvc.producto.model.entities.Producto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
