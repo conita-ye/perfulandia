@@ -16,7 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
         return EntityModel.of(
                 entity,
                 linkTo(methodOn(SucursalControllerV2.class).findById(entity.getIdSucursal())).withSelfRel(),
-                linkTo((methodOn(SucursalControllerV2.class).findAll()).withRel("sucursales"))
+                linkTo(methodOn(SucursalControllerV2.class).findAll()).withRel( "sucursales")
         );
     }
 
