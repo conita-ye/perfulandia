@@ -34,9 +34,11 @@ public class ProductoController {
 
     @GetMapping
     @Operation(
-            summary = "Listar todos los productos", description = "Este metodo debe listar los productos")
+            summary = "Listar todos los productos",
+            description = "Este metodo debe listar los productos")
     @ApiResponse(
-            responseCode = "200", description = "Se listaron los productos")
+            responseCode = "200",
+            description = "Se listaron los productos")
     public List<Producto> listarProducto() {
         return productoService.listarProducto();
     }
@@ -47,7 +49,8 @@ public class ProductoController {
             description = "Este metodo debe obtener un producto por su id"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se retorna el producto encontrado"),
+            @ApiResponse(responseCode = "200",
+                    description = "Se retorna el producto encontrado"),
             @ApiResponse(
                     responseCode = "404",
                     description = "Error - Producto con ID no existe",
@@ -58,7 +61,8 @@ public class ProductoController {
             )
     })
     @Parameters(value = {
-            @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
+            @Parameter(name = "id",
+                    description = "Este es el id unico del producto", required = true)
     })
     public ResponseEntity<Producto> findById(@PathVariable Long id) {
         Optional<Producto> producto = Optional.ofNullable(productoService.findById(id));
@@ -71,7 +75,16 @@ public class ProductoController {
             description = "Este metodo debe agregar un producto"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Se agrego el producto"),
+            @ApiResponse(responseCode = "201",
+                    description = "Se agrego el producto"),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "El producto agregado ya se encuentra en la base de datos",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                    )
+            )
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             required = true,
