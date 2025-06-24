@@ -7,6 +7,9 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 
 @Component
 public class CarroComprasModelAssembler implements RepresentationModelAssembler<CarroCompras, EntityModel<CarroCompras>> {
@@ -14,9 +17,9 @@ public class CarroComprasModelAssembler implements RepresentationModelAssembler<
     @Override
     public EntityModel<CarroCompras> toModel(CarroCompras carroCompras) {
         return EntityModel.of(
-                CarroCompras,
+                carroCompras,
                 linkTo(methodOn(com.perfulandgia.msvc.carrocompras.controller.CarroComprasController.class).findById(carroCompras.getIdBoleta())).withSelfRel(),
-                linkTo(methodOn(com.perfulandgia.msvc.carrocompras.controller.CarroComprasController.class).listarBoleta()).withRel("CarroCompras")
+                linkTo(methodOn(com.perfulandgia.msvc.carrocompras.controller.CarroComprasController.class).findAll()).withRel("carrocompras")
         );
     }
 }
