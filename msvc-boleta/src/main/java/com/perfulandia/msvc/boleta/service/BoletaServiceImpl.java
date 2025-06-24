@@ -1,6 +1,7 @@
 package com.perfulandia.msvc.boleta.service;
 
-import com.perfulandia.msvc.boleta.clients.ProductoClientRest;
+import com.perfulandia.msvc.boleta.clients.ClienteClientRest;
+import com.perfulandia.msvc.boleta.clients.SucursalClientRest;
 import com.perfulandia.msvc.boleta.exceptions.BoletaException;
 import com.perfulandia.msvc.boleta.model.entities.Boleta;
 import com.perfulandia.msvc.boleta.repository.BoletaRepository;
@@ -14,7 +15,9 @@ public class BoletaServiceImpl implements BoletaService {
         @Autowired
         private BoletaRepository boletaRepository;
         @Autowired
-        private ProductoClientRest productoClientRest;
+        private SucursalClientRest sucursalClientRest;
+        @Autowired
+        private ClienteClientRest clienteClientRest;
 
         @Override
         public List<Boleta> listarBoleta () {

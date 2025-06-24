@@ -24,15 +24,11 @@ public class Boleta {
     @Column (nullable = false)
     private String nombreCliente;
 
-    @NotNull(message = "El ID del carro de compras no puede ser nulo")
-    @Column(nullable = false)
-    private Long idCarroCompras;
-
     @NotNull(message = "El ID del cliente no puede ser nulo")
     @Column(nullable = false)
     private Long idCliente;
 
-    @NotNull(message = "El ID del producto no puede ser nulo")
+    @NotNull(message = "El ID de sucursal no puede ser nulo")
     @Column(nullable = false)
-    private Long idProducto;
+    private Long idSucursal;
 }
