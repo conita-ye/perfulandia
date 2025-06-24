@@ -1,4 +1,4 @@
-package com.perfulandia.msvc.cliente.model;
+package com.perfulandia.msvc.cliente.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -34,4 +34,8 @@ public class Cliente {
     @Column (nullable = false)
     @NotNull(message = "El campo no puede estar vacío")
     private Integer telefono;
+
+    @NotNull(message = "El ID de boleta no puede ser nulo")
+    @Column(nullable = false)
+    private Long idBoleta;
 }

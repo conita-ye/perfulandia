@@ -2,7 +2,7 @@ package com.perfulandia.msvc.cliente.controller;
 
 import com.perfulandia.msvc.cliente.assemblers.ClienteModelAssembler;
 import com.perfulandia.msvc.cliente.dtos.ErrorDTO;
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import com.perfulandia.msvc.cliente.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

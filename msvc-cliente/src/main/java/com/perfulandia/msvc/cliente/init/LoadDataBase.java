@@ -1,6 +1,6 @@
 package com.perfulandia.msvc.cliente.init;
 
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import com.perfulandia.msvc.cliente.repository.ClienteRepository;
 import net.datafaker.Faker;
 import org.slf4j.Logger;

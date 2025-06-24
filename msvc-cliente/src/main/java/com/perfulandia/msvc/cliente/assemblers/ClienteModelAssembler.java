@@ -1,7 +1,7 @@
 package com.perfulandia.msvc.cliente.assemblers;
 
 import com.perfulandia.msvc.cliente.controller.ClienteController;
-import com.perfulandia.msvc.cliente.model.Cliente;
+import com.perfulandia.msvc.cliente.model.entities.Cliente;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
