@@ -10,7 +10,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-@public class SucursalModelAssembler implements RepresentationModelAssembler<Sucursal, EntityModel<Sucursal> {
+public class SucursalModelAssembler implements RepresentationModelAssembler<Sucursal, EntityModel<Sucursal>>{
     @Override
     public EntityModel<Sucursal> toModel(Sucursal entity) {
         return EntityModel.of(
