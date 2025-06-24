@@ -14,10 +14,10 @@ public class ProductoModelAssembler implements RepresentationModelAssembler<Prod
     public EntityModel<Producto> toModel(Producto entity) {
         return EntityModel.of(
                 entity,
-                linkTo(methodOn(ProductoControllerV2.class).findById(entity.getIdProducto())).withSelRel(),
-                linkTo(methodOn(ProductoControllerV2.class).findAll()).withRel("productos"),
-                Link.of("http://localhost:8005/api/v2/productos"+entity.getIdProducto()).withRel("producto"),
-                Link.of("")
+                linkTo(methodOn(ProductoControllerV2.class).findById(entity.getId())).withSelfRel(),
+                linkTo(methodOn(ProductoControllerV2.class).listarProducto()).withRel("productos"),
+                Link.of("http://localhost:8005/api/v2/productos/" + entity.getId()).withRel("producto")
+
         );
     }
 }
