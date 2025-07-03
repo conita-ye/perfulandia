@@ -38,11 +38,24 @@ public class ProductoServiceImpl implements ProductoService {
 //            }
             return productoRepository.save(producto);
         }
+        @Override
+        public Producto actualizarProducto(Long id, Producto producto) {
+            Producto productoBuscado = this.findById(id);
+            productoBuscado.setNombreProducto(producto.getNombreProducto());
+            productoBuscado.setFechaElaboracion(producto.getFechaElaboracion());
+            productoBuscado.setFechaVencimiento(producto.getFechaVencimiento());
+            productoBuscado.setCategoria(producto.getCategoria());
+            productoBuscado.setStock(producto.getStock());
+            productoBuscado.setPrecio(producto.getPrecio());
+
+            return this.productoRepository.save(productoBuscado);
+        }
+
 
         @Override
-        public void eliminarProducto(Long id) {
-            productoRepository.deleteById(id);
-        }
+            public void eliminarProducto(Long id) {
+                productoRepository.deleteById(id);
+            }
 }
 
 

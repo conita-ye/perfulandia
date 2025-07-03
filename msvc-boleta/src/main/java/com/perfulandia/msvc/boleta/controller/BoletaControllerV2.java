@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/boletas")
+@RequestMapping("api/v2/boletas")
 @Validated
 @Tag(name = "Boletas", description = "Esta sección contiene los CRUD de boleta")
 
@@ -144,7 +144,7 @@ public class BoletaControllerV2 {
 
             actualizada.setIdBoleta(boleta.getIdBoleta());
             actualizada.setIdCliente(boleta.getIdCliente());
-            actualizada.setIdProducto(boleta.getIdProducto());
+            actualizada.setIdBoleta(boleta.getIdBoleta());
             actualizada.setFechaEmision(boleta.getFechaEmision());
             actualizada.setNombreCliente(boleta.getNombreCliente());
 

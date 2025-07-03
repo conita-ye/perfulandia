@@ -14,6 +14,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,8 +27,10 @@ import javax.print.attribute.standard.Media;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 @RestController
-@RequestMapping("api/v1/productos")
+@RequestMapping("api/v2/productos")
 @Validated
 @Tag(name = "Productos", description = "Esta seccion contiene los CRUD de producto")
 
@@ -50,8 +54,17 @@ public class ProductoControllerV2 {
                     schema = @Schema(implementation = Producto.class)
             )
     )
-    public List<Producto> listarProducto() {
-        return productoService.listarProducto();
+    public ResponseEntity<CollectionModel<EntityModel<Producto>>> listarProducto() {
+        List<EntityModel<Producto>> entityModels = productoService.listarProducto()
+                .stream()
+                .map(productoModelAssembler::toModel)
+                .toList();
+
+        CollectionModel<EntityModel<Producto>> collectionModel = CollectionModel.of(
+                entityModels,
+                linkTo(methodOn(ProductoControllerV2.class).listarProducto()).withSelfRel()
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(collectionModel);
     }
 
     @GetMapping("/{id}")
@@ -80,10 +93,9 @@ public class ProductoControllerV2 {
     @Parameters(value = {
             @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
     })
-    public ResponseEntity<Producto> findById(@PathVariable Long id) {
-        Optional<Producto> producto = Optional.ofNullable(productoService.findById(id));
-        return producto.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<EntityModel<Producto>> findById(@PathVariable Long id) {
+        EntityModel<Producto> entityModel = productoModelAssembler.toModel(productoService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(entityModel);
     }
 
     @PostMapping
@@ -114,9 +126,10 @@ public class ProductoControllerV2 {
                     schema = @Schema(implementation = Producto.class)
             )
     )
-    public ResponseEntity<Producto> agregarProducto(@Valid @RequestBody Producto producto) {
+    public ResponseEntity<EntityModel<Producto>> agregarProducto(@Valid @RequestBody Producto producto) {
         Producto nuevoProducto = productoService.guardarProducto(producto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
+        EntityModel<Producto> entityModel = productoModelAssembler.toModel(nuevoProducto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(entityModel);
     }
 
     @PutMapping("/{id}")
@@ -138,23 +151,9 @@ public class ProductoControllerV2 {
     @Parameters(value = {
             @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
     })
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @Valid @RequestBody Producto producto) {
-        Optional<Producto> productoExistente = Optional.ofNullable(productoService.findById(id));
-
-        if (productoExistente.isPresent()) {
-            Producto actualizado = productoExistente.get();
-
-            actualizado.setNombreProducto(producto.getNombreProducto());
-            actualizado.setFechaElaboracion(producto.getFechaElaboracion());
-            actualizado.setFechaVencimiento(producto.getFechaVencimiento());
-            actualizado.setCategoria(producto.getCategoria());
-            actualizado.setStock(producto.getStock());
-            actualizado.setPrecio(producto.getPrecio());
-
-            return ResponseEntity.ok(productoService.guardarProducto(actualizado));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<EntityModel<Producto>> actualizarProducto(@PathVariable Long id, @Valid @RequestBody Producto producto) {
+        EntityModel<Producto> entityModel = productoModelAssembler.toModel(productoService.actualizarProducto(id, producto));
+        return ResponseEntity.status(HttpStatus.OK).body(entityModel);
     }
 
     @DeleteMapping("/{id}")
