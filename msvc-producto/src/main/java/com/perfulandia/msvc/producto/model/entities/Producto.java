@@ -22,11 +22,11 @@ public class Producto {
     @Column (nullable = false)
     private String nombreProducto;
 
-    @NotBlank(message = "El campo no puede estar vacio")
+    @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
     private Date fechaElaboracion;
 
-    @NotBlank(message = "El campo no puede estar vacio")
+    @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
     private String fechaVencimiento;
 
@@ -34,16 +34,13 @@ public class Producto {
     @Column (nullable = false)
     private String categoria;
 
-    @NotNull (message = "El Stock no puede ser nulo")
     @Column (nullable = false)
-    private int stock;
+    @NotNull(message = "El stock no puede ser nulo")
+    private Integer stock;
 
     @NotNull (message = "El precio no puede ser nulo")
     @Column (nullable = false)
     private double precio;
 
-    @NotNull(message = "El ID de inventario no puede ser nulo")
-    @Column(nullable = false)
-    private Long idInventario;
 
 }

@@ -5,7 +5,6 @@ import com.perfulandia.msvc.producto.exceptions.ProductoException;
 import com.perfulandia.msvc.producto.model.Inventario;
 import com.perfulandia.msvc.producto.model.entities.Producto;
 import com.perfulandia.msvc.producto.repository.ProductoRepository;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +30,12 @@ public class ProductoServiceImpl implements ProductoService {
 
         @Override
         public Producto guardarProducto(Producto producto) {
-            try{
-                Inventario inventario = this.inventarioClientRest.findById(producto.getIdInventario());
-            }catch (FeignException exception){
-                throw new ProductoException("El inventario con id"+producto.getIdInventario() + "no se encuentra en la base de datos"
-                        + "por ende no se puede generar el nexo de relación");
-            }
+//            try{
+//                Inventario inventario = this.inventarioClientRest.findById(producto.getIdInventario());
+//            }catch (FeignException exception){
+//                throw new ProductoException("El inventario con id "+producto.getIdInventario() + " no se encuentra en la base de datos"
+//                        + " por ende no se puede generar el nexo de relación");
+//            }
             return productoRepository.save(producto);
         }
 

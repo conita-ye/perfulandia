@@ -26,19 +26,19 @@ public class SucursalServiceImpl implements SucursalService {
     @Override
     public Sucursal findById(Long id) {
         return this.sucursalRepository.findById(id).orElseThrow(
-                () -> new SucursalException ("La sucursal con id"+id+" no se encuentra en la base de datos")
+                () -> new SucursalException ("La sucursal con id "+id+" no se encuentra en la base de datos")
         );
     }
 
     @Override
     public Sucursal save (Sucursal sucursal) {
-        try{
-            Inventario inventario = this.inventarioClientRest.findById(sucursal.getIdInventario());
-        }catch (FeignException exception){
-            throw new SucursalException("El inventario con id"+sucursal.getIdInventario()+"no se encuentra en la base de datos"
-                    + "por ende no se puede generar el nexo de relacion");
-
-        }
+//        try{
+//            Inventario inventario = this.inventarioClientRest.findById(sucursal.getIdInventario());
+//        }catch (FeignException exception){
+//            throw new SucursalException("El inventario con id "+sucursal.getIdInventario()+" no se encuentra en la base de datos"
+//                    + " por ende no se puede generar el nexo de relacion");
+//
+//        }
         return this.sucursalRepository.save(sucursal);
     }
 }

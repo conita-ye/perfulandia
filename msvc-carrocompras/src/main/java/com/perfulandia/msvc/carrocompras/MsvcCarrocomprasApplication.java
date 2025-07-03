@@ -6,8 +6,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
 @SpringBootApplication
-public class MsvcCarrocomprasApplication {
 
+public class MsvcCarrocomprasApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MsvcCarrocomprasApplication.class, args);
 	}
