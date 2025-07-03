@@ -1,4 +1,4 @@
-package services;
+package com.perfulandia.msvc.sucursal.services;
 
 
 import com.perulandia.msvc.sucursal.model.entities.Sucursal;

@@ -25,7 +25,7 @@ import javax.print.attribute.standard.Media;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/sucursales")
+@RequestMapping("api/v2/sucursales")
 @Validated
 public class SucursalControllerV2 {
     @Autowired
