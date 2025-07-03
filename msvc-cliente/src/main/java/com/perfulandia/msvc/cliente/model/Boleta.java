@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-@Entity
-@Table (name = "boletas")
+
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor

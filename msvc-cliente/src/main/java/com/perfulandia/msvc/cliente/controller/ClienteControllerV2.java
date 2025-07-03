@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/boletas")
+@RequestMapping("api/v2/clientes")
 @Validated
 @Tag(name = "Clientes", description = "Esta sección contiene los CRUD de cliente")
 
