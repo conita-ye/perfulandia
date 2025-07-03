@@ -28,17 +28,5 @@ public class InventarioServiceTests {
 
 
 
-	@BeforeEach
-	public void setUP();{
-		productoTest = new Producto();
-
-
-	}
-
-
-
-
-	{
-	}
 
 }
