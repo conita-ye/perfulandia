@@ -1,4 +1,4 @@
-package com.perfulandgia.msvc.carrocompras.controller;
+package com.perfulandia.msvc.carrocompras.controller;
 
 import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import com.perfulandia.msvc.carrocompras.service.CarroComprasService;
@@ -36,9 +36,7 @@ public class CarroComprasController {
     @GetMapping("/{id}")
     @Operation(summary = "Buscar un producto por ID")
     public ResponseEntity<CarroCompras> findById(@PathVariable Long id) {
-        return carroComprasService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.status(HttpStatus.OK).body(this.carroComprasService.findById(id));
     }
 
     @PostMapping
@@ -51,22 +49,15 @@ public class CarroComprasController {
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar un producto del carro")
     public ResponseEntity<CarroCompras> update(@PathVariable Long id, @Valid @RequestBody CarroCompras carroCompras) {
-        return carroComprasService.findById(id).map(existente -> {
-            existente.setProductoId(carroCompras.getProductoId());
-            existente.setClienteId(carroCompras.getClienteId());
-            existente.setCantidad(carroCompras.getCantidad());
-            existente.setPrecioUnitario(carroCompras.getPrecioUnitario());
-            return ResponseEntity.ok(carroComprasService.save(existente));
-        }).orElse(ResponseEntity.notFound().build());
+        CarroCompras actualizado = this.carroComprasService.updateById(id, carroCompras);
+        return ResponseEntity.status(HttpStatus.OK).body(actualizado);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un producto del carro por ID")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        return carroComprasService.findById(id).map(c -> {
-            carroComprasService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }).orElse(ResponseEntity.notFound().build());
+        this.carroComprasService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
 

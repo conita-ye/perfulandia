@@ -14,7 +14,6 @@ import java.util.Locale;
 
 @Profile("dev")
 @Component
-
 public class LoadDataBase implements CommandLineRunner {
     @Autowired
     private ClienteRepository clienteRepository;

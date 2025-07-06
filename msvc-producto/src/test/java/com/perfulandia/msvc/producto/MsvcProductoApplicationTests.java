@@ -1,10 +1,10 @@
-package com.perfulandia.msvc.boleta;
+package com.perfulandia.msvc.producto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsvcBoletaApplicationTests {
+class MsvcProductoApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -9,6 +9,7 @@ import com.perfulandia.msvc.carrocompras.repository.CarroComprasRepository;
 import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,22 @@ public class CarroComprasServiceImpl implements CarroComprasService {
         }
 
         return this.carroComprasRepository.save (carroCompras);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        this.carroComprasRepository.deleteById(id);
+    }
+
+    @Override
+    public CarroCompras updateById(Long id, CarroCompras carroCompras) {
+        CarroCompras existente = this.findById(id);
+        existente.setIdProducto(carroCompras.getIdProducto());
+        existente.setIdCliente(carroCompras.getIdCliente());
+        existente.setCantidadProducto(carroCompras.getCantidadProducto());
+        existente.setPrecioUnitario(carroCompras.getPrecioUnitario());
+        return carroComprasRepository.save(existente);
+
     }
 
 }
