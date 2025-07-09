@@ -12,13 +12,13 @@ public class ProductoDTO {
     @JsonIgnore
     private Long id;
 
-    @Schema(description = "Nombre del producto", example = "Papas")
+    @Schema(description = "Nombre del producto", example = "Pettemue")
     private String nombreProducto;
     @Schema(description = "Fecha de elaboracion", example = "2021-01-01")
     private String fechaElaboracion;
     @Schema(description = "Fecha de vencimiento", example = "2021-01-31")
     private String fechaVencimiento;
-    @Schema(description = "Categoria", example = "Frutas")
+    @Schema(description = "Categoria", example = "Aroma Frutal")
     private String categoria;
     @Schema(description = "Stock", example = "100")
     private int stock;
