@@ -34,8 +34,9 @@ public class CarroComprasController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar un producto por ID")
+    @Operation(summary = "Buscar un producto por ID con HATEOAS")
     public ResponseEntity<CarroCompras> findById(@PathVariable Long id) {
+        CarroCompras carro = this.carroComprasService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(this.carroComprasService.findById(id));
     }
 
