@@ -2,6 +2,7 @@ package com.perfulandia.msvc.carrocompras.controller;
 
 import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
 import com.perfulandia.msvc.carrocompras.service.CarroComprasService;
+import com.perfulandia.msvc.carrocompras.service.CarrocomprasService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class CarroComprasController {
 
     @Autowired
-    private CarroComprasService carroComprasService;
+    private CarrocomprasService carroComprasService;
 
     @GetMapping
     @Operation(
