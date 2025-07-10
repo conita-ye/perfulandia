@@ -4,20 +4,18 @@ package com.perfulandia.msvc.producto.services;
 import com.perfulandia.msvc.producto.exceptions.ProductoException;
 import com.perfulandia.msvc.producto.model.entities.Producto;
 import com.perfulandia.msvc.producto.repository.ProductoRepository;
-import com.perfulandia.msvc.producto.service.ProductoService;
 import com.perfulandia.msvc.producto.service.ProductoServiceImpl;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -35,15 +33,19 @@ public class ProductoServiceTest {
     private List<Producto> productos = new ArrayList<>();
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         this.productoPrueba = new Producto();
         Faker faker = new Faker(Locale.of("es","CL"));
-        for(int i=0;i<100;i++){
+        for(int i = 0; i < 100; i++) {
             Producto productoCreate = new Producto();
 
             productoCreate.setNombreProducto(faker.commerce().productName());
-            productoCreate.setFechaElaboracion(new Date());
-            productoCreate.setFechaVencimiento(faker.date().future(365, TimeUnit.DAYS).toString());
+            productoCreate.setFechaElaboracion(LocalDate.now());
+            productoCreate.setFechaVencimiento(
+                    LocalDate.now()
+                            .plusDays(faker.number().numberBetween(1, 365))
+                            .toString()
+            );
             productoCreate.setCategoria(faker.commerce().department());
             productoCreate.setStock(faker.number().numberBetween(1,1000));
             productoCreate.setPrecio(Double.parseDouble(faker.commerce().price()));
