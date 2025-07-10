@@ -14,6 +14,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +25,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("api/v2/boletas")
 @Validated
 @Tag(name = "Boletas", description = "Esta sección contiene los CRUD de boleta")
-
 public class BoletaControllerV2 {
 
     @Autowired
@@ -36,10 +40,8 @@ public class BoletaControllerV2 {
     @Autowired
     private BoletaModelAssembler boletaModelAssembler;
 
-
     @GetMapping
-    @Operation(
-            summary = "Listar todos las boletas", description = "Este metodo debe listar las boletas")
+    @Operation(summary = "Listar todos las boletas", description = "Este método debe listar las boletas")
     @ApiResponse(
             responseCode = "200",
             description = "Se listaron las boletas de forma exitosa",
@@ -48,131 +50,84 @@ public class BoletaControllerV2 {
                     schema = @Schema(implementation = Boleta.class)
             )
     )
-    public List<Boleta> listarBoleta() {
-        return boletaService.listarBoleta();
+    public ResponseEntity<CollectionModel<EntityModel<Boleta>>> listarBoleta() {
+        List<Boleta> boletas = boletaService.listarBoleta();
+
+        List<EntityModel<Boleta>> boletasModel = boletas.stream()
+                .map(boletaModelAssembler::toModel)
+                .toList();
+
+        CollectionModel<EntityModel<Boleta>> collectionModel = CollectionModel.of(boletasModel,
+                linkTo(methodOn(BoletaControllerV2.class).listarBoleta()).withSelfRel());
+
+        return ResponseEntity.ok(collectionModel);
     }
 
     @GetMapping("/{id}")
-    @Operation(
-            summary = "Obtener una boleta por su id",
-            description = "Este metodo debe obtener una boleta por su id"
-    )
+    @Operation(summary = "Obtener una boleta por su id", description = "Este método debe obtener una boleta por su id")
     @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Operación Exitosa",
-                    content = @Content(
-                            mediaType = MediaTypes.HAL_JSON_VALUE,
-                            schema = @Schema(implementation = Boleta.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Boleta no encontrada con el id dado",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorDTO.class)
-                    )
-            )
+            @ApiResponse(responseCode = "200", description = "Operación Exitosa",
+                    content = @Content(mediaType = MediaTypes.HAL_JSON_VALUE, schema = @Schema(implementation = Boleta.class))),
+            @ApiResponse(responseCode = "404", description = "Boleta no encontrada", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    @Parameters(value = {
-            @Parameter(name = "id", description = "Este es el id unico del producto", required = true)
-    })
-    public ResponseEntity<Boleta> findById(@PathVariable Long id) {
+    @Parameters(@Parameter(name = "id", description = "ID único de la boleta", required = true))
+    public ResponseEntity<EntityModel<Boleta>> findById(@PathVariable Long id) {
         Optional<Boleta> boleta = Optional.ofNullable(boletaService.findById(id));
-        return boleta.map(ResponseEntity::ok)
+
+        return boleta.map(value -> ResponseEntity.ok(boletaModelAssembler.toModel(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    @Operation( summary = "Agregar una boleta",
-            description = "Este método debe agregar una boleta"
-    )
+    @Operation(summary = "Agregar una boleta", description = "Este método debe agregar una boleta")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201",
-                    description = "Se agrego la boleta",
-                    content = @Content(
-                            mediaType = MediaTypes.HAL_JSON_VALUE,
-                            schema = @Schema(implementation = Boleta.class)
-                    )
-            ),
-            @ApiResponse(responseCode = "400",
-                    description = "Error - Boleta con ID ya existe",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorDTO.class)
-                    )
-            )
+            @ApiResponse(responseCode = "201", description = "Se agregó la boleta",
+                    content = @Content(mediaType = MediaTypes.HAL_JSON_VALUE, schema = @Schema(implementation = Boleta.class))),
+            @ApiResponse(responseCode = "400", description = "Error - Boleta con ID ya existe",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            required = true,
-            description = "Esta es la boleta a agregar",
-            content = @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = Boleta.class)
-            )
-    )
-    public ResponseEntity<Boleta> agregarBoleta (@Valid @RequestBody Boleta boleta) {
+    public ResponseEntity<EntityModel<Boleta>> agregarBoleta(@Valid @RequestBody Boleta boleta) {
         Boleta nuevaBoleta = boletaService.save(boleta);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaBoleta);
+        EntityModel<Boleta> boletaModel = boletaModelAssembler.toModel(nuevaBoleta);
+
+        return ResponseEntity
+                .created(boletaModel.getRequiredLink("self").toUri())
+                .body(boletaModel);
     }
 
     @PutMapping("/{id}")
-    @Operation(
-            summary = "Actualizar una boleta  por su id",
-            description = "Este metodo debe obtener una boleta por su id"
-    )
+    @Operation(summary = "Actualizar una boleta por su id", description = "Este método debe actualizar una boleta por su id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se retorna la boleta encontrada"),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Error - Boleta con ID no existe",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorDTO.class)
-                    )
-            )
+            @ApiResponse(responseCode = "200", description = "Se actualizó la boleta",
+                    content = @Content(mediaType = MediaTypes.HAL_JSON_VALUE, schema = @Schema(implementation = Boleta.class))),
+            @ApiResponse(responseCode = "404", description = "Boleta no encontrada", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    @Parameters(value = {
-            @Parameter(name = "id", description = "Este es el id único de boleta ", required = true)
-    })
-    public ResponseEntity<Boleta> actualizarBoleta(@PathVariable Long id, @Valid @RequestBody Boleta boleta) {
+    @Parameters(@Parameter(name = "id", description = "ID único de la boleta", required = true))
+    public ResponseEntity<EntityModel<Boleta>> actualizarBoleta(@PathVariable Long id, @Valid @RequestBody Boleta boleta) {
         Optional<Boleta> boletaExistente = Optional.ofNullable(boletaService.findById(id));
 
         if (boletaExistente.isPresent()) {
             Boleta actualizada = boletaExistente.get();
 
-            actualizada.setIdBoleta(boleta.getIdBoleta());
             actualizada.setIdCliente(boleta.getIdCliente());
-            actualizada.setIdBoleta(boleta.getIdBoleta());
             actualizada.setFechaEmision(boleta.getFechaEmision());
             actualizada.setNombreCliente(boleta.getNombreCliente());
 
-            return ResponseEntity.ok(boletaService.save(actualizada));
+            Boleta guardada = boletaService.save(actualizada);
+
+            return ResponseEntity.ok(boletaModelAssembler.toModel(guardada));
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
-    @Operation(
-            summary = "Eliminar una boleta  por su id",
-            description = "Este metodo debe eliminar una boleta por su id"
-    )
+    @Operation(summary = "Eliminar una boleta por su id", description = "Este método debe eliminar una boleta por su id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se elimina la boleta encontrada"),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Error - Boleta con ID no existe",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorDTO.class)
-                    )
-            )
+            @ApiResponse(responseCode = "204", description = "Se eliminó la boleta"),
+            @ApiResponse(responseCode = "404", description = "Boleta no encontrada", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    @Parameters(value = {
-            @Parameter(name = "id", description = "Este es el id unico de la boleta", required = true)
-    })
+    @Parameters(@Parameter(name = "id", description = "ID único de la boleta", required = true))
     public ResponseEntity<Void> eliminarBoleta(@PathVariable Long id) {
         Optional<Boleta> boleta = Optional.ofNullable(boletaService.findById(id));
 
@@ -184,3 +139,4 @@ public class BoletaControllerV2 {
         }
     }
 }
+
