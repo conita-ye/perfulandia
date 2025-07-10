@@ -34,17 +34,17 @@ public class SucursalServiceTest {
     private List<Sucursal> sucursales = new ArrayList<>();
 
     @BeforeEach
-    public void setUp() {
+    public void setUp(){
         this.sucursalPrueba = new Sucursal();
-        sucursalPrueba.setIdSucursal(1L);
-        sucursalPrueba.setNombre("Sucursal Principal");
-        sucursalPrueba.setDireccion("Av. Principal 123");
-        sucursalPrueba.setCiudad("Santiago");
+        this.sucursalPrueba.setIdSucursal(1L);
+        this.sucursalPrueba.setNombre("Sucursal Principal");
+        this.sucursalPrueba.setDireccion("Av. Principal 123");
+        this.sucursalPrueba.setCiudad("Santiago");
 
-        Faker faker = new Faker(Locale.of("es", "CL"));
-        for (int i = 0; i < 10; i++) {
+        Faker faker = new Faker(Locale.of("es","CL"));
+        for(int i=0; i<10; i++){
             Sucursal sucursalCreate = new Sucursal();
-            sucursalCreate.setIdSucursal((long) (i + 2));
+            sucursalCreate.setIdSucursal((long)(i + 2));
             sucursalCreate.setNombre("Sucursal " + faker.company().name());
             sucursalCreate.setDireccion(faker.address().fullAddress());
             sucursalCreate.setCiudad(faker.address().city());
@@ -55,9 +55,10 @@ public class SucursalServiceTest {
     // BUSCAR TODAS LAS SUCURSALES
     @Test
     @DisplayName("Se debe listar todas las sucursales")
-    public void shouldFindAllSucursales() {
-        List<Sucursal> sucursales = this.sucursales;
+    public void shouldFindAllSucursales(){
+        List<Sucursal> sucursales = new ArrayList<>(this.sucursales);
         sucursales.add(this.sucursalPrueba);
+
         when(sucursalRepository.findAll()).thenReturn(sucursales);
 
         List<Sucursal> result = sucursalService.findAll();
@@ -70,68 +71,78 @@ public class SucursalServiceTest {
     // BUSCAR 1 SUCURSAL
     @Test
     @DisplayName("Se debe buscar una sucursal")
-    public void shouldFindById() {
-        when(sucursalRepository.findById(1L)).thenReturn(java.util.Optional.of(this.sucursalPrueba));
+    public void shouldFindById(){
+        when(sucursalRepository.findById(1L)).thenReturn(Optional.of(this.sucursalPrueba));
 
         Sucursal result = sucursalService.findById(1L);
 
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(sucursalPrueba);
+        assertThat(result.getNombre()).isEqualTo("Sucursal Principal");
         verify(sucursalRepository, times(1)).findById(1L);
     }
 
-    // BUSCAR SUCURSAL QUE NO EXISTE
     @Test
     @DisplayName("Debe lanzar excepción cuando no encuentra sucursal por ID")
-    public void shouldThrowExceptionWhenSucursalNotFound() {
-        Long idInexistente = 999L;
-        when(sucursalRepository.findById(idInexistente)).thenReturn(Optional.empty());
+    public void shouldThrowExceptionWhenSucursalNotFound(){
+        when(sucursalRepository.findById(999L)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> sucursalService.findById(idInexistente))
+        assertThatThrownBy(() -> sucursalService.findById(999L))
                 .isInstanceOf(SucursalException.class)
-                .hasMessageContaining("La sucursal con id " + idInexistente + " no se encuentra en la base de datos");
+                .hasMessageContaining("Sucursal no encontrada con ID: 999");
 
-        verify(sucursalRepository, times(1)).findById(idInexistente);
+        verify(sucursalRepository, times(1)).findById(999L);
     }
 
     // GUARDAR SUCURSAL
     @Test
-    @DisplayName("Se debe guardar una nueva sucursal")
-    public void shouldSaveSucursal() {
-        when(sucursalRepository.save(any(Sucursal.class))).thenReturn(sucursalPrueba);
+    @DisplayName("Se debe guardar una sucursal")
+    public void shouldSaveSucursal(){
+        Sucursal nuevaSucursal = new Sucursal();
+        nuevaSucursal.setNombre("Nueva Sucursal");
+        nuevaSucursal.setDireccion("Calle Nueva 456");
+        nuevaSucursal.setCiudad("Valparaíso");
 
-        Sucursal result = sucursalService.save(sucursalPrueba);
+        Sucursal sucursalGuardada = new Sucursal();
+        sucursalGuardada.setIdSucursal(2L);
+        sucursalGuardada.setNombre("Nueva Sucursal");
+        sucursalGuardada.setDireccion("Calle Nueva 456");
+        sucursalGuardada.setCiudad("Valparaíso");
+
+        when(sucursalRepository.save(any(Sucursal.class))).thenReturn(sucursalGuardada);
+
+        Sucursal result = sucursalService.save(nuevaSucursal);
 
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(sucursalPrueba);
-        assertThat(result.getNombre()).isEqualTo("Sucursal Principal");
-        verify(sucursalRepository, times(1)).save(any(Sucursal.class));
+        assertThat(result.getIdSucursal()).isEqualTo(2L);
+        assertThat(result.getNombre()).isEqualTo("Nueva Sucursal");
+        assertThat(result.getDireccion()).isEqualTo("Calle Nueva 456");
+        assertThat(result.getCiudad()).isEqualTo("Valparaíso");
+        verify(sucursalRepository, times(1)).save(nuevaSucursal);
     }
 
-    // GUARDAR SUCURSAL NULA
     @Test
     @DisplayName("Debe lanzar excepción al guardar sucursal nula")
-    public void shouldThrowExceptionWhenSavingNullSucursal() {
+    public void shouldThrowExceptionWhenSavingNullSucursal(){
         assertThatThrownBy(() -> sucursalService.save(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SucursalException.class)
                 .hasMessageContaining("La sucursal no puede ser nula");
 
-        verify(sucursalRepository, never()).save(any(Sucursal.class));
+        verify(sucursalRepository, never()).save(any());
     }
 
-    // GUARDAR SUCURSAL CON NOMBRE VACÍO
     @Test
     @DisplayName("Debe lanzar excepción al guardar sucursal con nombre vacío")
-    public void shouldThrowExceptionWhenSavingSucursalWithEmptyName() {
+    public void shouldThrowExceptionWhenSavingSucursalWithEmptyName(){
         Sucursal sucursalSinNombre = new Sucursal();
         sucursalSinNombre.setNombre("");
         sucursalSinNombre.setDireccion("Dirección válida");
         sucursalSinNombre.setCiudad("Ciudad válida");
 
         assertThatThrownBy(() -> sucursalService.save(sucursalSinNombre))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SucursalException.class)
                 .hasMessageContaining("El nombre de la sucursal es obligatorio");
 
-        verify(sucursalRepository, never()).save(any(Sucursal.class));
+        verify(sucursalRepository, never()).save(any());
     }
 }

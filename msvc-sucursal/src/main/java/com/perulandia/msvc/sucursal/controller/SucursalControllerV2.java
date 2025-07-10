@@ -20,8 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.Mac;
-import javax.print.attribute.standard.Media;
 import java.util.List;
 
 @RestController
@@ -112,6 +110,7 @@ public class SucursalControllerV2 {
     public ResponseEntity<Sucursal> save (@RequestBody @Valid Sucursal sucursal) {
         return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.save(sucursal));
     }
+
 
 }
 
