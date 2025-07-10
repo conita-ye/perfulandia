@@ -1,7 +1,6 @@
 package com.perfulandia.msvc.carrocompras.controller;
 
 import com.perfulandia.msvc.carrocompras.model.entities.CarroCompras;
-import com.perfulandia.msvc.carrocompras.service.CarrocomprasService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -12,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/carrocompras")
