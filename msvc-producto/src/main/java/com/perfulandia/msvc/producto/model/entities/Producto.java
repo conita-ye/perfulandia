@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="productos")
@@ -24,7 +24,7 @@ public class Producto {
 
     @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
-    private Date fechaElaboracion;
+    private LocalDate fechaElaboracion;
 
     @NotNull(message = "La fecha no puede ser nula")
     @Column (nullable = false)
